@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/default_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_standard">
+
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_title"
+            android:textColor="#212121"
+            android:textSize="@dimen/contact_detail_name"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/padding_large"
+            android:layout_marginBottom="@dimen/padding_large" />
+
+        
+        <LinearLayout
+            android:id="@+id/setting_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/input_field_background"
+            android:focusable="true"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_language"
+                android:textColor="#212121"
+                android:textSize="@dimen/text_body" />
+
+            <TextView
+                android:id="@+id/txt_language_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#616161"
+                android:textSize="@dimen/text_body" />
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:id="@+id/setting_ringtone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/input_field_background"
+            android:focusable="true"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_ringtone"
+                android:textColor="#212121"
+                android:textSize="@dimen/text_body" />
+
+            <TextView
+                android:id="@+id/txt_ringtone_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#616161"
+                android:textSize="@dimen/text_body" />
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:id="@+id/setting_auto_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/input_field_background"
+            android:focusable="true"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_auto_answer"
+                android:textColor="#212121"
+                android:textSize="@dimen/text_body" />
+
+            <TextView
+                android:id="@+id/txt_auto_answer_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#616161"
+                android:textSize="@dimen/text_body" />
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/input_field_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_account_info"
+                android:textColor="#212121"
+                android:textSize="@dimen/text_body"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/txt_session_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#616161"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        
+        <TextView
+            android:id="@+id/btn_go_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/button_height"
+            android:text="@string/go_back"
+            android:textSize="@dimen/text_body"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_secondary_background"
+            android:padding="@dimen/padding_standard"
+            android:layout_marginHorizontal="@dimen/padding_standard"
+            android:focusable="true"
+            android:clickable="true" />
+
+    </LinearLayout>
+
+</ScrollView>

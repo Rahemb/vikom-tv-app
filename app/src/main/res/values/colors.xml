@@ -1,0 +1,6 @@
+<resources>
+    <color name="background_gradient_start">#000000</color>
+    <color name="background_gradient_end">#DDDDDD</color>
+    <color name="default_background">#FFFFFF</color> 
+    <color name="speaker_active">#4CAF50</color>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/black">
+
+    <TextView
+        android:id="@+id/txt_appointment_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="12dp"
+        android:text="Appointment" />
+
+    <TextView
+        android:id="@+id/txt_appointment_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:paddingBottom="8dp"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/txt_appointment_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:paddingBottom="8dp"
+        android:text="Time" />
+
+    <TextView
+        android:id="@+id/txt_appointment_personnel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:paddingBottom="24dp"
+        android:text="Personnel" />
+
+    <Button
+        android:id="@+id/btn_appointment_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:backgroundTint="#2196F3"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

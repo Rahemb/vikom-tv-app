@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dialog_width"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="@dimen/dialog_padding_horizontal"
+    android:paddingTop="@dimen/dialog_padding_top"
+    android:paddingBottom="@dimen/dialog_padding_bottom">
+
+    
+    <TextView
+        android:id="@+id/dialog_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⚠️"
+        android:textSize="@dimen/dialog_icon_size"
+        android:layout_marginBottom="12dp" />
+
+    
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Utloggingsbekreftelse"
+        android:textSize="@dimen/dialog_title_size"
+        android:textColor="#212121"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-bold"
+        android:layout_marginBottom="8dp" />
+
+    
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Er du sikker på at du vil logge ut ?"
+        android:textSize="@dimen/text_body"
+        android:textColor="#616161"
+        android:layout_marginBottom="28dp" />
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        
+        <TextView
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dialog_button_height"
+            android:layout_weight="1"
+            android:text="Bekreft"
+            android:textSize="@dimen/tab_text_size"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/dialog_btn_confirm"
+            android:focusable="true"
+            android:clickable="true"
+            android:defaultFocusHighlightEnabled="false"
+            android:layout_marginEnd="12dp" />
+
+        
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dialog_button_height"
+            android:layout_weight="1"
+            android:text="Avbryt"
+            android:textSize="@dimen/tab_text_size"
+            android:textColor="#424242"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/dialog_btn_cancel"
+            android:focusable="true"
+            android:clickable="true"
+            android:defaultFocusHighlightEnabled="false"
+            android:layout_marginStart="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

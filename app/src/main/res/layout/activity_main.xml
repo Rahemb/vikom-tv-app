@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_wave_background"
+    tools:context=".ui.activities.MainActivity"
+    tools:deviceIds="tv">
+
+    
+    <RelativeLayout
+        android:id="@+id/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:layout_marginTop="@dimen/header_top_margin"
+        android:layout_marginBottom="20dp">
+
+        
+        <LinearLayout
+            android:id="@+id/header_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="@dimen/logo_width"
+                android:layout_height="@dimen/logo_height"
+                android:src="@drawable/tv_caller_logo"
+                android:scaleType="fitStart"
+                android:contentDescription="ViKom Logo" />
+
+            <TextView
+                android:id="@+id/txt_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_user"
+                android:textSize="@dimen/header_welcome_text"
+                android:textColor="#1E88E5"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:id="@+id/header_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            
+            <LinearLayout
+                android:id="@+id/btn_hamburger_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/header_widget_container"
+                android:paddingHorizontal="@dimen/padding_standard"
+                android:paddingVertical="6dp"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/btn_hamburger"
+                    android:layout_width="@dimen/header_icon_size"
+                    android:layout_height="@dimen/header_icon_size"
+                    android:src="@drawable/ic_menu"
+                    android:background="@drawable/button_header_icon_background"
+                    android:padding="4dp"
+                    android:scaleType="fitCenter"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:contentDescription="Menu"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            
+            <LinearLayout
+                android:id="@+id/icons_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/header_widget_container"
+                android:paddingHorizontal="@dimen/padding_standard"
+                android:paddingVertical="6dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:id="@+id/btn_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/button_menu_item_background"
+                    android:paddingHorizontal="6dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:contentDescription="@string/logout"
+                    tools:ignore="TouchTargetSizeCheck">
+
+                    <ImageView
+                        android:layout_width="@dimen/header_icon_size"
+                        android:layout_height="@dimen/header_icon_size"
+                        android:src="@drawable/ic_logout"
+                        android:scaleType="fitCenter"
+                        android:focusable="false"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:id="@+id/txt_logout_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/logout"
+                        android:textSize="11sp"
+                        android:textColor="#212121"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/button_menu_item_background"
+                    android:paddingHorizontal="6dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:contentDescription="Settings"
+                    tools:ignore="TouchTargetSizeCheck">
+
+                    <ImageView
+                        android:layout_width="@dimen/header_icon_size"
+                        android:layout_height="@dimen/header_icon_size"
+                        android:src="@drawable/ic_settings"
+                        android:scaleType="fitCenter"
+                        android:focusable="false"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:id="@+id/txt_settings_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:textSize="11sp"
+                        android:textColor="#212121"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/button_menu_item_background"
+                    android:paddingHorizontal="6dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:contentDescription="Profile"
+                    tools:ignore="TouchTargetSizeCheck">
+
+                    <ImageView
+                        android:layout_width="@dimen/header_icon_size"
+                        android:layout_height="@dimen/header_icon_size"
+                        android:src="@drawable/ic_profile"
+                        android:scaleType="fitCenter"
+                        android:focusable="false"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:id="@+id/txt_profile_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textSize="11sp"
+                        android:textColor="#212121"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            
+            <View
+                android:id="@+id/clock_spacer"
+                android:layout_width="@dimen/padding_standard"
+                android:layout_height="1dp" />
+
+            
+            <LinearLayout
+                android:id="@+id/clock_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/header_widget_container"
+                android:paddingHorizontal="@dimen/padding_standard"
+                android:paddingVertical="6dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/header_icon_size"
+                    android:layout_height="@dimen/header_icon_size"
+                    android:src="@drawable/ic_clock"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Clock" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp"
+                    android:gravity="start">
+
+                    <TextView
+                        android:id="@+id/txt_clock_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/clock_time_size"
+                        android:textColor="#212121"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-bold"
+                        android:lineSpacingExtra="-2dp"
+                        tools:text="14:05" />
+
+                    <TextView
+                        android:id="@+id/txt_clock_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/clock_date_size"
+                        android:textColor="#424242"
+                        tools:text="15 Januar 2026" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    
+    <FrameLayout
+        android:id="@+id/main_browse_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_bar" />
+
+</RelativeLayout>

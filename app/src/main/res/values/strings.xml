@@ -1,0 +1,187 @@
+<resources>
+    <string name="app_name">TV Caller</string>
+
+    
+    <string name="login_title">ViKom</string>
+    <string name="email_hint">Skriv inn epost</string>
+    <string name="password_hint">Skriv inn passord</string>
+    <string name="password_label">Passord</string>
+    <string name="login_button">Logg inn</string>
+    <string name="register_button">Registrer</string>
+    <string name="forgot_password">Glemt Passord?</string>
+    <string name="email_label_login">E-post</string>
+    <string name="splash_welcome">Velkommen ViKom bruker !</string>
+
+    
+    <string name="email_verification_title">Bekreft e-posten din</string>
+    <string name="email_verification_message">Vi har sendt en bekreftelseslenke til:\n\n%s\n\nSjekk innboksen din og klikk på lenken.</string>
+    <string name="resend_email_button">Send på nytt</string>
+    <string name="resend_email_sending">Sender…</string>
+    <string name="back_to_login_button">Tilbake til innlogging</string>
+
+    
+    <string name="register_title">Opprett konto</string>
+    <string name="username_hint">Velg et brukernavn</string>
+    <string name="username_label">Brukernavn</string>
+    <string name="first_name_hint">Fornavn</string>
+    <string name="first_name_label">Fornavn</string>
+    <string name="last_name_hint">Etternavn</string>
+    <string name="last_name_label">Etternavn</string>
+    <string name="full_name_hint">Fullt navn</string>
+    <string name="phone_number_label">Skriv inn telefonnummer</string>
+    <string name="confirm_password_hint">Gjenta passord</string>
+    <string name="confirm_password_label">Bekreft passord</string>
+    <string name="back_to_login">Tilbake</string>
+
+    
+    <string name="tab_quick_dial">Hurtigoppringing</string>
+    <string name="tab_dial_pad">ID-søk</string>
+    <string name="tab_contacts">Kontakter</string>
+    <string name="welcome_user">Velkommen Bruker !</string>
+    <string name="status_logged_in">Innlogget</string>
+    <string name="section_favorites">Favoritter</string>
+
+    
+    <string name="enter_number">Skriv inn nummer</string>
+    <string name="call_button">Ring</string>
+    <string name="btn_clear">✕</string>
+    <string name="btn_0">0</string>
+    <string name="btn_1">1</string>
+    <string name="btn_2">2</string>
+    <string name="btn_3">3</string>
+    <string name="btn_4">4</string>
+    <string name="btn_5">5</string>
+    <string name="btn_6">6</string>
+    <string name="btn_7">7</string>
+    <string name="btn_8">8</string>
+    <string name="btn_9">9</string>
+    <string name="btn_star">*</string>
+    <string name="btn_hash">#</string>
+
+    
+    <string name="add_new_contact">Legg til ny kontakt</string>
+    <string name="page_indicator">Side %1$d av %2$d</string>
+    <string name="previous">Forrige</string>
+    <string name="next">Neste</string>
+
+    
+    <string name="go_back">Tilbake</string>
+    <string name="call">Ring</string>
+    <string name="remove_contact">Fjern</string>
+    <string name="add_to_contacts">Legg til kontakt</string>
+    <string name="contact_name_placeholder">Marco</string>
+    <string name="user_id_placeholder">123456789</string>
+    <string name="profile_icon">👤</string>
+
+    
+    <string name="status_online">● Pålogget</string>
+    <string name="status_offline">○ Frakoblet</string>
+    <string name="status_checking">Sjekker status…</string>
+    <string name="status_in_call">I en samtale</string>
+    <string name="status_busy">Opptatt</string>
+
+    
+    <string name="permission_microphone_required">Mikrofontillatelse er nødvendig for å ringe</string>
+    <string name="permission_denied_message">Kan ikke ringe uten nødvendige tillatelser. Vennligst gi tillatelser i Innstillinger.</string>
+
+    
+    <string name="logout">Logg ut</string>
+
+    
+    <string name="name_label">Navn</string>
+    <string name="name_hint">Skriv inn kontaktnavn</string>
+    <string name="user_id_label">Kontakt-ID</string>
+    <string name="user_id_hint">Skriv inn 9-sifret kontakt-ID</string>
+    <string name="email_label">E-post</string>
+    <string name="contact_email_label">E-post (Valgfritt)</string>
+    <string name="contact_email_hint">Skriv inn e-postadresse</string>
+    <string name="address_label">Adresse (Valgfritt)</string>
+    <string name="contact_address_hint">Skriv inn adresse</string>
+    <string name="notes_label">Notater (Valgfritt)</string>
+    <string name="contact_notes_hint">Legg til notater om denne kontakten</string>
+    <string name="save">Lagre</string>
+    <string name="cancel">Avbryt</string>
+    <string name="edit_contact">Rediger kontakt</string>
+
+    
+    <string name="phone_label">Telefonnummer</string>
+    <string name="phone_number_hint">Skriv inn telefonnummer</string>
+    <string name="phone_placeholder">123–456–7891</string>
+
+    
+    <string name="unknown_caller">Ukjent anroper</string>
+    <string name="unknown_contact">Ukjent kontakt</string>
+    <string name="status_ringing">Ringer…</string>
+    <string name="status_connecting">Kobler til…</string>
+    <string name="status_connected">Tilkoblet</string>
+    <string name="call_ended">Anrop avsluttet</string>
+    <string name="call_failed">Anrop mislyktes</string>
+    <string name="call_rejected">Anrop avslått</string>
+    <string name="call_cancelled">Anrop kansellert</string>
+    <string name="call_service_unavailable">Anropstjeneste ikke tilgjengelig</string>
+    <string name="incoming_call">Innkommende anrop</string>
+    <string name="outgoing_call">Utgående anrop</string>
+    <string name="call_with">Anrop med %s</string>
+    <string name="muted">Mikrofon av</string>
+    <string name="speaker_on">Høyttaler PÅ</string>
+    <string name="creating_account">Oppretter konto…</string>
+    <string name="login_success">Innlogging vellykket!</string>
+    <string name="account_created_message">Konto opprettet! Bekreftelsesepost sendt til:\n%s\n\nVennligst bekreft e-posten din før du logger inn.</string>
+    <string name="logged_out_success">Logget ut</string>
+    <string name="logout_failed">Utlogging mislyktes: %s</string>
+    <string name="logout_error">Utloggingsfeil: %s</string>
+    <string name="error_prefix">Feil: %s</string>
+    <string name="no_answer">Ingen svar</string>
+    <string name="contact_added">Kontakt lagt til!</string>
+    <string name="profile_coming_soon">Profil – kommer snart</string>
+    <string name="settings_coming_soon">Innstillinger – kommer snart</string>
+    <string name="notification_active_calls">Aktive anrop</string>
+    <string name="notification_for_active_calls">Varsling for aktive anrop</string>
+    <string name="calling_contact">Ringer %1$s (ID: %2$s)…</string>
+    <string name="contact_deleted">Kontakt slettet!</string>
+    <string name="added_to_contacts">Lagt til i kontakter!</string>
+    <string name="delete_contact_title">Slett kontakt</string>
+    <string name="delete_contact_message">Er du sikker på at du vil slette %s? Denne handlingen kan ikke angres.</string>
+    <string name="delete">Slett</string>
+    <string name="add_contact_title">Legg til kontakt</string>
+    <string name="add_contact_message">Vil du legge til %s i kontaktene dine?</string>
+    <string name="add">Legg til</string>
+    <string name="cannot_call_offline">Kan ikke ringe: Kontakten er frakoblet</string>
+    <string name="calling_contact_offline">Kontakten ser ut til å være frakoblet. Ringer likevel…</string>
+
+    
+    <string name="profile_title">Min profil</string>
+    <string name="change_photo">Endre bilde</string>
+    <string name="contact_id_label">Kontakt-ID</string>
+    <string name="choose_avatar">Velg avatar</string>
+    <string name="remove_photo">Fjern bilde</string>
+    <string name="username_taken">Brukernavnet er allerede i bruk</string>
+    <string name="upload_photo">Last opp bilde</string>
+
+    
+    <string name="section_your_contacts">Dine kontakter</string>
+    <string name="section_other_users">Andre brukere</string>
+    <string name="contact_name_with_nickname">%1$s (%2$s)</string>
+    <string name="contact_id_format">ID: %d</string>
+
+    
+    <string name="settings_title">Innstillinger</string>
+    <string name="settings_language">Språk</string>
+    <string name="settings_ringtone">Ringetone</string>
+    <string name="settings_auto_answer">Autobesvaring</string>
+    <string name="settings_vibration">Vibrasjon</string>
+    <string name="settings_account_info">Kontoinformasjon</string>
+    <string name="setting_on">På</string>
+    <string name="setting_off">Av</string>
+
+    
+    <string name="call_timer_zero">00:00</string>
+    <string name="notification_call_status">%1$s &#8226; %2$s</string>
+    <string name="notification_ready_for_calls">Klar for samtaler</string>
+    <string name="notification_incoming_call_from">Innkommende samtale fra %s</string>
+
+    <string name="appointment_title_default">Avtale</string>
+    <string name="appointment_time_format">%1$s — %2$s</string>
+    <string name="appointment_ok">OK</string>
+
+</resources>

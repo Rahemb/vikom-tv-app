@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#FCFDFF"
+                android:endColor="#F7F9FE"
+                android:angle="135" />
+        </shape>
+    </item>
+
+    
+    <item
+        android:top="-200dp"
+        android:right="-100dp"
+        android:left="300dp"
+        android:bottom="400dp">
+        <rotate
+            android:fromDegrees="-30"
+            android:pivotX="80%"
+            android:pivotY="20%">
+            <shape android:shape="oval">
+                <gradient
+                    android:startColor="#2890CAF9"
+                    android:endColor="#001976D2"
+                    android:type="radial"
+                    android:gradientRadius="450dp" />
+            </shape>
+        </rotate>
+    </item>
+
+    
+    <item
+        android:top="400dp"
+        android:left="-100dp"
+        android:right="300dp"
+        android:bottom="-200dp">
+        <rotate
+            android:fromDegrees="30"
+            android:pivotX="20%"
+            android:pivotY="80%">
+            <shape android:shape="oval">
+                <gradient
+                    android:startColor="#2890CAF9"
+                    android:endColor="#001976D2"
+                    android:type="radial"
+                    android:gradientRadius="450dp" />
+            </shape>
+        </rotate>
+    </item>
+
+    
+    <item
+        android:top="-100dp"
+        android:left="-100dp"
+        android:right="100dp">
+        <rotate
+            android:fromDegrees="90"
+            android:pivotX="20%"
+            android:pivotY="80%">
+            <shape android:shape="oval">
+                <gradient
+                    android:startColor="#2890CAF9"
+                    android:endColor="#001976D2"
+                    android:type="radial"
+                    android:gradientRadius="450dp" />
+            </shape>
+        </rotate>
+    </item>
+
+    
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#4D2E3440" />
+        </shape>
+    </item>
+</layer-list>

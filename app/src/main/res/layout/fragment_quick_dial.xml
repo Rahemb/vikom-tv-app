@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:paddingHorizontal="@dimen/padding_large"
+    android:paddingTop="4dp"
+    android:paddingBottom="2dp">
+
+    
+    <LinearLayout
+        android:id="@+id/tab_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tab_quick_dial"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tab_height"
+            android:layout_weight="1"
+            android:text="@string/tab_quick_dial"
+            android:textSize="@dimen/tab_text_size"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-bold"
+            android:gravity="center"
+            android:background="@drawable/tab_button_first_active"
+            android:focusable="true"
+            android:clickable="true"
+            android:defaultFocusHighlightEnabled="false"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tab_contacts"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tab_height"
+            android:layout_weight="1"
+            android:text="@string/tab_contacts"
+            android:textSize="@dimen/tab_text_size"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-bold"
+            android:gravity="center"
+            android:background="@drawable/tab_button_last_inactive"
+            android:focusable="true"
+            android:clickable="true"
+            android:defaultFocusHighlightEnabled="false"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/content_area_background"
+            android:padding="8dp">
+
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="4dp">
+
+                <TextView
+                    android:id="@+id/txt_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Innlogget"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="#212121"
+                    android:drawableStart="@drawable/green_circle_button"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/contacts_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false" />
+
+            
+            <LinearLayout
+                android:id="@+id/favorites_header_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="4dp">
+
+                <TextView
+                    android:id="@+id/txt_favorites_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="★ Favoritter"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="#212121" />
+
+                
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#BDBDBD"
+                    android:layout_marginStart="12dp" />
+            </LinearLayout>
+
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/favorites_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

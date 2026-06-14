@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/default_background"
+    android:padding="@dimen/padding_standard">
+
+    
+    <LinearLayout
+        android:id="@+id/header_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        
+        <TextView
+            android:id="@+id/btn_remove_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dialog_button_height"
+            android:text="@string/remove_contact"
+            android:textSize="@dimen/text_body"
+            android:textColor="#D32F2F"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_remove_outline_background"
+            android:paddingHorizontal="@dimen/padding_large"
+            android:paddingVertical="@dimen/padding_standard"
+            android:focusable="true"
+            android:clickable="true"
+            android:contentDescription="@string/remove_contact" />
+    </LinearLayout>
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/contact_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_name_placeholder"
+                android:textColor="#000000"
+                android:textSize="@dimen/contact_detail_name"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/btn_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="☆"
+                android:textSize="@dimen/favorite_star_size"
+                android:textColor="#FFD600"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/button_favorite_background"
+                android:focusable="true"
+                android:clickable="true"
+                android:contentDescription="Toggle favorite"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        
+        <TextView
+            android:id="@+id/contact_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Legg til kallenavn"
+            android:textColor="#9E9E9E"
+            android:textSize="@dimen/text_body"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:padding="4dp"
+            android:layout_marginBottom="8dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="@drawable/button_favorite_background"
+            android:visibility="gone" />
+
+        
+        <ImageView
+            android:id="@+id/img_contact_avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="@dimen/padding_standard"
+            android:scaleType="centerCrop"
+            android:background="@drawable/call_avatar_circle"
+            android:contentDescription="@string/profile_icon" />
+
+        
+        <TextView
+            android:id="@+id/contact_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_id_placeholder"
+            android:textColor="#000000"
+            android:textSize="@dimen/contact_detail_id"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:gravity="center" />
+
+        
+        <TextView
+            android:id="@+id/contact_online_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/status_checking"
+            android:textColor="#9E9E9E"
+            android:textSize="@dimen/contact_detail_status"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:drawablePadding="8dp" />
+
+    </LinearLayout>
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/padding_large">
+
+        
+        <TextView
+            android:id="@+id/btn_call"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/button_height"
+            android:minHeight="@dimen/button_height"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_call_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="@dimen/padding_standard"
+            android:text="@string/call"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/text_body"
+            android:textStyle="bold"
+            android:contentDescription="@string/call" />
+
+        
+        <TextView
+            android:id="@+id/btn_go_back_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/button_height"
+            android:minHeight="@dimen/button_height"
+            android:layout_weight="1"
+            android:text="@string/go_back"
+            android:textSize="@dimen/text_body"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_secondary_background"
+            android:padding="@dimen/padding_standard"
+            android:layout_marginStart="4dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:contentDescription="@string/go_back" />
+
+        
+        <TextView
+            android:id="@+id/btn_add_contact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/button_height"
+            android:minHeight="@dimen/button_height"
+            android:layout_weight="1"
+            android:text="@string/add_to_contacts"
+            android:textSize="@dimen/text_body"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_add_contact_background"
+            android:padding="@dimen/padding_standard"
+            android:layout_marginStart="4dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="gone"
+            android:contentDescription="@string/add_to_contacts" />
+    </LinearLayout>
+
+</LinearLayout>

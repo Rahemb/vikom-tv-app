@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_wave_background">
+
+    
+    <ImageView
+        android:id="@+id/btn_close_menu"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="@dimen/padding_large"
+        android:layout_marginEnd="@dimen/padding_large"
+        android:padding="8dp"
+        android:src="@drawable/ic_close"
+        android:scaleType="fitCenter"
+        android:focusable="true"
+        android:clickable="true"
+        android:contentDescription="Close menu"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:orientation="vertical"
+        android:background="@drawable/dialog_background"
+        android:paddingVertical="@dimen/padding_large">
+
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/padding_standard"
+            android:text="Meny"
+            android:textSize="@dimen/dialog_title_size"
+            android:textColor="#212121"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-bold" />
+
+        
+        <LinearLayout
+            android:id="@+id/menu_item_profile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/padding_large"
+            android:background="@android:color/transparent"
+            android:focusable="true"
+            android:clickable="true">
+
+            <ImageView
+                android:layout_width="@dimen/header_icon_size"
+                android:layout_height="@dimen/header_icon_size"
+                android:src="@drawable/ic_profile"
+                android:scaleType="fitCenter"
+                android:contentDescription="Profile icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_standard"
+                android:text="Profil"
+                android:textColor="#212121"
+                android:textSize="@dimen/text_body"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:background="#15000000" />
+
+        
+        <LinearLayout
+            android:id="@+id/menu_item_settings"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/padding_large"
+            android:background="@android:color/transparent"
+            android:focusable="true"
+            android:clickable="true">
+
+            <ImageView
+                android:layout_width="@dimen/header_icon_size"
+                android:layout_height="@dimen/header_icon_size"
+                android:src="@drawable/ic_settings"
+                android:scaleType="fitCenter"
+                android:contentDescription="Settings icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_standard"
+                android:text="Innstillinger"
+                android:textColor="#212121"
+                android:textSize="@dimen/text_body"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:background="#15000000" />
+
+        
+        <LinearLayout
+            android:id="@+id/menu_item_logout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/padding_large"
+            android:background="@android:color/transparent"
+            android:focusable="true"
+            android:clickable="true">
+
+            <ImageView
+                android:layout_width="@dimen/header_icon_size"
+                android:layout_height="@dimen/header_icon_size"
+                android:src="@drawable/ic_logout"
+                android:scaleType="fitCenter"
+                android:contentDescription="Logout icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_standard"
+                android:text="Logg ut"
+                android:textColor="#D32F2F"
+                android:textSize="@dimen/text_body"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
