@@ -12,6 +12,7 @@ import io.github.jan.supabase.realtime.channel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
@@ -34,6 +36,7 @@ class SignalingManager(
 
     companion object {
         private const val TAG = "SignalingManager"
+        private const val SUBSCRIBE_TIMEOUT_MS = 15_000L
     }
     private val json = Json { ignoreUnknownKeys = true }
 
@@ -83,13 +86,26 @@ class SignalingManager(
                     }
                     .launchIn(scope)
 
-                channel.subscribe()
+                // Block until the channel actually reaches SUBSCRIBED instead of logging
+                // success right after the non-blocking subscribe() call. The Realtime
+                // socket retries forever on a dead network, so guard with a timeout —
+                // an offline device then surfaces as an Error rather than a silent
+                // "Connected" that never receives broadcasts.
+                try {
+                    withTimeout(SUBSCRIBE_TIMEOUT_MS) {
+                        channel.subscribe(blockUntilSubscribed = true)
+                    }
 
-                Log.i(TAG, "✅ Subscribed to shared signaling channel for user: $currentUserId")
-                _events.emit(SignalingEvent.Connected)
+                    Log.i(TAG, "✅ Subscribed to shared signaling channel for user: $currentUserId")
+                    _events.emit(SignalingEvent.Connected)
+                    isInitialized = true
+                } catch (e: TimeoutCancellationException) {
+                    Log.e(TAG, "❌ Signaling channel did not reach SUBSCRIBED within ${SUBSCRIBE_TIMEOUT_MS}ms — check device connectivity", e)
+                    channel.unsubscribe()
+                    signalingChannel = null
+                    _events.emit(SignalingEvent.Error("Signaling channel did not connect (check network)", e))
+                }
             }
-
-            isInitialized = true
 
         } catch (e: Exception) {
             Log.e(TAG, "Failed to initialize SignalingManager", e)
