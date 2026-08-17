@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  DEBUG BUILDS ONLY. This file lives in src/debug, so the manifest merger applies
+  it to debug builds and never to release ones.
+
+  Why it exists: Android has blocked cleartext (plain HTTP) traffic by default
+  since API 28, but the .NET backend runs over plain HTTP on a developer's machine
+  during local development. Without this, requests fail on the device before they
+  ever reach the network.
+
+  Why it is permissive: cleartext is allowed to ANY host rather than to a
+  whitelist of specific IPs. An earlier version pinned each developer's LAN IP,
+  which meant every new contributor had to edit this tracked file with their own
+  address — a merge-conflict magnet and a silent failure when forgotten. Since the
+  exception cannot reach a release build, the practical risk is limited to
+  developer machines on their own networks.
+
+  Do NOT add android:usesCleartextTraffic to the manifest as well: Android ignores
+  that attribute whenever a networkSecurityConfig is present, so the two do not
+  combine and having both is misleading.
+
+  For production: the backend should be served over HTTPS with a CA-issued
+  certificate, at which point nothing here is needed. If a staging environment
+  ever uses a private CA, add a <domain-config> with <trust-anchors> for that host
+  rather than loosening this further.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
