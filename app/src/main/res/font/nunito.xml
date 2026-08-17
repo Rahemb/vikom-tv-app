@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Nunito — heading typeface, matching the web app's font-heading token.
+
+  google/fonts only ships Nunito as a variable font now, so all three entries
+  point at the same file and select a weight via fontVariationSettings. That is
+  honoured on API 29+; the Galaxy Tab A8 target is API 31+, so it resolves
+  properly there. On older APIs the variation settings are ignored and every
+  entry renders Nunito's default instance, which degrades to regular weight
+  rather than failing — acceptable, but it means heading weight should not be
+  the only thing distinguishing a heading. Size and colour carry it too.
+-->
+<font-family
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontVariationSettings="'wght' 400"
+        android:fontWeight="400"
+        app:font="@font/nunito_variable"
+        app:fontStyle="normal"
+        app:fontVariationSettings="'wght' 400"
+        app:fontWeight="400" />
+
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontVariationSettings="'wght' 700"
+        android:fontWeight="700"
+        app:font="@font/nunito_variable"
+        app:fontStyle="normal"
+        app:fontVariationSettings="'wght' 700"
+        app:fontWeight="700" />
+
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontVariationSettings="'wght' 800"
+        android:fontWeight="800"
+        app:font="@font/nunito_variable"
+        app:fontStyle="normal"
+        app:fontVariationSettings="'wght' 800"
+        app:fontWeight="800" />
+</font-family>

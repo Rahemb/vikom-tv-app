@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Primary button. Colours and corner radius follow the web app's .btn-primary,
+  which uses the radius-sm token (12dp) — pills are reserved for badges there,
+  so this is deliberately less rounded than the 30dp it used to be.
+-->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    
+
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
-            <solid android:color="#90CAF9" />/>
-            <corners android:radius="30dp" />
+            <solid android:color="@color/vk_primary_disabled" />
+            <corners android:radius="@dimen/radius_sm" />
         </shape>
     </item>
 
-    
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <solid android:color="#42A5F5" />
-            <corners android:radius="30dp" />
+            <solid android:color="@color/vk_primary_focus" />
+            <corners android:radius="@dimen/radius_sm" />
         </shape>
     </item>
 
-    
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="#1565C0" />/>
-            <corners android:radius="30dp" />
+            <solid android:color="@color/vk_primary_pressed" />
+            <corners android:radius="@dimen/radius_sm" />
         </shape>
     </item>
 
-    
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#1976D2" />/>
-            <corners android:radius="30dp" />
+            <solid android:color="@color/vk_primary" />
+            <corners android:radius="@dimen/radius_sm" />
         </shape>
     </item>
 </selector>

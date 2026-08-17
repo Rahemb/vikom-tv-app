@@ -4,8 +4,8 @@
     <item>
         <shape android:shape="rectangle">
             <gradient
-                android:startColor="#FCFDFF"
-                android:endColor="#F7F9FE"
+                android:startColor="#FDFCFF"
+                android:endColor="#FAF8FE"
                 android:angle="135" />
         </shape>
     </item>
@@ -22,8 +22,8 @@
             android:pivotY="20%">
             <shape android:shape="oval">
                 <gradient
-                    android:startColor="#2890CAF9"
-                    android:endColor="#001976D2"
+                    android:startColor="#28C9BAF3"
+                    android:endColor="#007C56E3"
                     android:type="radial"
                     android:gradientRadius="450dp" />
             </shape>
@@ -42,8 +42,8 @@
             android:pivotY="80%">
             <shape android:shape="oval">
                 <gradient
-                    android:startColor="#2890CAF9"
-                    android:endColor="#001976D2"
+                    android:startColor="#28C9BAF3"
+                    android:endColor="#007C56E3"
                     android:type="radial"
                     android:gradientRadius="450dp" />
             </shape>
@@ -61,8 +61,8 @@
             android:pivotY="80%">
             <shape android:shape="oval">
                 <gradient
-                    android:startColor="#2890CAF9"
-                    android:endColor="#001976D2"
+                    android:startColor="#28C9BAF3"
+                    android:endColor="#007C56E3"
                     android:type="radial"
                     android:gradientRadius="450dp" />
             </shape>
@@ -72,7 +72,7 @@
     
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#4D2E3440" />
+            <solid android:color="#4D1E214C" />
         </shape>
     </item>
 </layer-list>

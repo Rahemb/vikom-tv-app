@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Dialog / modal surface, on the web app's radius-card corner. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#FFFFFF" />
-    <corners android:radius="24dp" />
+    <solid android:color="@color/vk_surface" />
+    <corners android:radius="@dimen/radius_card" />
 </shape>

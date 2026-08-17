@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Danger button. Colours follow the web app's danger token and its hover value. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
-            <solid android:color="#EF9A9A" />
-            <corners android:radius="30dp" />
+            <solid android:color="@color/vk_danger_disabled" />
+            <corners android:radius="@dimen/radius_sm" />
         </shape>
     </item>
+
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <solid android:color="#EF5350" />
-            <corners android:radius="30dp" />
+            <solid android:color="@color/vk_danger_focus" />
+            <corners android:radius="@dimen/radius_sm" />
         </shape>
     </item>
+
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="#C62828" />
-            <corners android:radius="30dp" />
+            <solid android:color="@color/vk_danger_pressed" />
+            <corners android:radius="@dimen/radius_sm" />
         </shape>
     </item>
+
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#D32F2F" />
-            <corners android:radius="30dp" />
+            <solid android:color="@color/vk_danger" />
+            <corners android:radius="@dimen/radius_sm" />
         </shape>
     </item>
 </selector>

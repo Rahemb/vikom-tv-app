@@ -18,7 +18,7 @@
             android:id="@+id/login_logo"
             android:layout_width="@dimen/auth_logo_width"
             android:layout_height="@dimen/auth_logo_height"
-            android:src="@drawable/tv_caller_logo"
+            android:src="@drawable/vk_logo"
             android:scaleType="fitCenter"
             android:layout_marginBottom="@dimen/auth_padding"
             android:contentDescription="ViKom Logo" />
@@ -53,10 +53,10 @@
                 android:hint="@string/email_hint"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/padding_standard"
-                android:textColor="#212121"
-                android:textColorHint="#616161"
+                android:textColor="@color/vk_text_primary"
+                android:textColorHint="@color/vk_text_muted"
                 android:textSize="@dimen/text_body"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/poppins"
                 android:importantForAutofill="yes" />
         </LinearLayout>
 
@@ -90,10 +90,10 @@
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
                 android:padding="@dimen/padding_standard"
-                android:textColor="#212121"
-                android:textColorHint="#616161"
+                android:textColor="@color/vk_text_primary"
+                android:textColorHint="@color/vk_text_muted"
                 android:textSize="@dimen/text_body"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/poppins"
                 android:importantForAutofill="yes" />
         </LinearLayout>
 
@@ -107,7 +107,7 @@
             android:minHeight="48dp"
             android:text="@string/forgot_password"
             android:textSize="@dimen/header_welcome_text"
-            android:textColor="#212121"
+            android:textColor="@color/vk_text_primary"
             android:layout_marginBottom="@dimen/padding_large"
             android:paddingBottom="4dp"
             android:focusable="true"

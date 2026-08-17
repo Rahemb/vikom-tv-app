@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_title"
-            android:textColor="#212121"
+            android:textColor="@color/vk_text_primary"
             android:textSize="@dimen/contact_detail_name"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
@@ -42,14 +42,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/settings_language"
-                android:textColor="#212121"
+                android:textColor="@color/vk_text_primary"
                 android:textSize="@dimen/text_body" />
 
             <TextView
                 android:id="@+id/txt_language_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#616161"
+                android:textColor="@color/vk_text_muted"
                 android:textSize="@dimen/text_body" />
         </LinearLayout>
 
@@ -72,14 +72,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/settings_ringtone"
-                android:textColor="#212121"
+                android:textColor="@color/vk_text_primary"
                 android:textSize="@dimen/text_body" />
 
             <TextView
                 android:id="@+id/txt_ringtone_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#616161"
+                android:textColor="@color/vk_text_muted"
                 android:textSize="@dimen/text_body" />
         </LinearLayout>
 
@@ -102,14 +102,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/settings_auto_answer"
-                android:textColor="#212121"
+                android:textColor="@color/vk_text_primary"
                 android:textSize="@dimen/text_body" />
 
             <TextView
                 android:id="@+id/txt_auto_answer_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#616161"
+                android:textColor="@color/vk_text_muted"
                 android:textSize="@dimen/text_body" />
         </LinearLayout>
 
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_account_info"
-                android:textColor="#212121"
+                android:textColor="@color/vk_text_primary"
                 android:textSize="@dimen/text_body"
                 android:layout_marginBottom="4dp" />
 
@@ -134,7 +134,7 @@
                 android:id="@+id/txt_session_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#616161"
+                android:textColor="@color/vk_text_muted"
                 android:textSize="12sp" />
         </LinearLayout>
 

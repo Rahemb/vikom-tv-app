@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+      ViKom type scale. The app previously had no TextAppearance styles at all —
+      every TextView set fontFamily/textSize/textColor inline.
+
+      Typefaces follow the web app (Nunito for headings, Poppins for body), but the
+      SIZES deliberately do NOT: they resolve from @dimen/text_*, which is overridden
+      per screen-size bucket so a Galaxy Tab A8 (sw720dp) gets 40sp titles and 22sp
+      body. The web app's 16px base is for a desktop portal read at arm's length;
+      shrinking the tablet to match would be an accessibility regression for the
+      elderly patients who are its primary users.
+
+      textStyle="bold" selects the 700 entry from the bundled font family.
+    -->
+
+    <style name="VK.Text" parent="">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/vk_text_primary</item>
+    </style>
+
+    <!-- Headings — Nunito -->
+    <style name="VK.Text.Title" parent="VK.Text">
+        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="VK.Text.Heading" parent="VK.Text">
+        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:textSize">@dimen/text_heading</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Body — Poppins -->
+    <style name="VK.Text.Body" parent="VK.Text">
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="VK.Text.Body.Emphasis" parent="VK.Text.Body">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="VK.Text.Body.Muted" parent="VK.Text.Body">
+        <item name="android:textColor">@color/vk_text_muted</item>
+    </style>
+
+    <style name="VK.Text.Caption" parent="VK.Text">
+        <item name="android:textSize">@dimen/text_caption</item>
+        <item name="android:textColor">@color/vk_text_muted</item>
+    </style>
+
+    <!-- Interactive -->
+    <style name="VK.Text.Button" parent="VK.Text">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/vk_white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:background">@drawable/button_primary_background</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:defaultFocusHighlightEnabled">false</item>
+    </style>
+
+    <style name="VK.Text.Button.Secondary" parent="VK.Text.Button">
+        <item name="android:background">@drawable/button_secondary_background</item>
+    </style>
+</resources>

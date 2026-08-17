@@ -24,9 +24,9 @@
             android:textSize="@dimen/tab_text_size"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-bold"
+            android:fontFamily="@font/poppins_bold"
             android:gravity="center"
-            android:background="@drawable/tab_button_first_active"
+            android:background="@drawable/tab_button_active"
             android:focusable="true"
             android:clickable="true"
             android:defaultFocusHighlightEnabled="false"
@@ -41,9 +41,9 @@
             android:textSize="@dimen/tab_text_size"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-bold"
+            android:fontFamily="@font/poppins_bold"
             android:gravity="center"
-            android:background="@drawable/tab_button_last_inactive"
+            android:background="@drawable/tab_button_inactive"
             android:focusable="true"
             android:clickable="true"
             android:defaultFocusHighlightEnabled="false"
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="Innlogget"
                     android:textSize="@dimen/text_body"
-                    android:textColor="#212121"
+                    android:textColor="@color/vk_text_primary"
                     android:drawableStart="@drawable/green_circle_button"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical" />
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:text="★ Favoritter"
                     android:textSize="@dimen/text_body"
-                    android:textColor="#212121" />
+                    android:textColor="@color/vk_text_primary" />
 
                 
                 <View

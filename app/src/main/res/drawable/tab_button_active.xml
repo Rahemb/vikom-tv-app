@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Selected tab. Replaces tab_button_first_active / tab_button_last_active, which
+  were byte-identical to each other — there was only ever one active style, and
+  the first/last naming was misleading.
+
+  The selected tab now carries the brand purple, matching how the web app's
+  sidebar marks its active nav item (primary on navy). Previously active was the
+  darker of the two, which read as de-emphasised.
+
+  Shape is unchanged: both top corners rounded, bottom square, so the strip keeps
+  its existing character and works for any number of tabs.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/vk_primary_focus" />
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
+                android:topLeftRadius="50dp"
+                android:topRightRadius="50dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/vk_primary" />
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
+                android:topLeftRadius="50dp"
+                android:topRightRadius="50dp" />
+        </shape>
+    </item>
+</selector>

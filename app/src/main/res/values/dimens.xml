@@ -80,6 +80,26 @@
     <dimen name="search_bar_height">44dp</dimen>
     <dimen name="search_button_text">14sp</dimen>
 
-    
+
     <dimen name="favorite_star_size">32sp</dimen>
+
+    <!--
+      ViKom brand shape + elevation tokens, ported from the web app's :root block in
+      ViKom/frontend/src/index.css (1rem = 16dp).
+
+      Names map to the web app's radius scale (sm / default / card / pill) and its
+      shadow scale (sm / md / lg).
+
+      These are brand constants, not sizing: unlike the text_* and button_* tokens
+      above they are deliberately NOT overridden per screen-size bucket, so a card
+      has the same corner radius here as it does in the web portal.
+    -->
+    <dimen name="radius_sm">12dp</dimen>
+    <dimen name="radius_default">16dp</dimen>
+    <dimen name="radius_card">20dp</dimen>
+    <dimen name="radius_pill">999dp</dimen>
+
+    <dimen name="elevation_sm">2dp</dimen>
+    <dimen name="elevation_md">4dp</dimen>
+    <dimen name="elevation_lg">8dp</dimen>
 </resources>

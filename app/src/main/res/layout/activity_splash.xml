@@ -11,7 +11,7 @@
         android:id="@+id/splash_logo"
         android:layout_width="@dimen/splash_logo_width"
         android:layout_height="@dimen/splash_logo_height"
-        android:src="@drawable/tv_caller_logo"
+        android:src="@drawable/vk_logo"
         android:scaleType="fitCenter"
         android:layout_marginBottom="@dimen/padding_xlarge"
         android:contentDescription="ViKom Logo" />
@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:text="@string/splash_welcome"
         android:textSize="@dimen/text_title"
-        android:textColor="#0D3B66"
+        android:textColor="@color/vk_secondary"
         android:textStyle="bold"
-        android:fontFamily="sans-serif-medium" />
+        android:fontFamily="@font/poppins_medium" />
 
 </LinearLayout>

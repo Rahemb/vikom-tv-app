@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_standard"
         android:text="@string/register_title"
-        android:textColor="#212121"
+        android:textColor="@color/vk_text_primary"
         android:textSize="@dimen/text_title"
         android:textStyle="bold" />
 
@@ -56,10 +56,10 @@
                 android:hint="@string/username_hint"
                 android:inputType="textPersonName"
                 android:padding="@dimen/padding_standard"
-                android:textColor="#212121"
-                android:textColorHint="#616161"
+                android:textColor="@color/vk_text_primary"
+                android:textColorHint="@color/vk_text_muted"
                 android:textSize="@dimen/text_body"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/poppins"
                 android:importantForAutofill="yes" />
         </LinearLayout>
 
@@ -92,10 +92,10 @@
                 android:hint="@string/phone_number_label"
                 android:inputType="phone"
                 android:padding="@dimen/padding_standard"
-                android:textColor="#212121"
-                android:textColorHint="#616161"
+                android:textColor="@color/vk_text_primary"
+                android:textColorHint="@color/vk_text_muted"
                 android:textSize="@dimen/text_body"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/poppins"
                 android:importantForAutofill="yes" />
         </LinearLayout>
     </LinearLayout>
@@ -130,8 +130,8 @@
             android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
             android:padding="@dimen/padding_standard"
-            android:textColor="#212121"
-            android:textColorHint="#616161"
+            android:textColor="@color/vk_text_primary"
+            android:textColorHint="@color/vk_text_muted"
             android:textSize="@dimen/text_body"
             android:importantForAutofill="yes" />
     </LinearLayout>
@@ -175,10 +175,10 @@
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
                 android:padding="@dimen/padding_standard"
-                android:textColor="#212121"
-                android:textColorHint="#616161"
+                android:textColor="@color/vk_text_primary"
+                android:textColorHint="@color/vk_text_muted"
                 android:textSize="@dimen/text_body"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/poppins"
                 android:importantForAutofill="yes" />
         </LinearLayout>
 
@@ -211,10 +211,10 @@
                 android:hint="@string/confirm_password_hint"
                 android:inputType="textPassword"
                 android:padding="@dimen/padding_standard"
-                android:textColor="#212121"
-                android:textColorHint="#616161"
+                android:textColor="@color/vk_text_primary"
+                android:textColorHint="@color/vk_text_muted"
                 android:textSize="@dimen/text_body"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/poppins"
                 android:importantForAutofill="yes" />
         </LinearLayout>
     </LinearLayout>

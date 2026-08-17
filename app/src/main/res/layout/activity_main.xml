@@ -24,15 +24,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/padding_standard"
+            android:layout_toStartOf="@+id/header_right"
             android:orientation="vertical">
 
+            <!--
+              adjustViewBounds + a capped width lets the logo shrink to whatever
+              space is left instead of overlapping the header icons. In portrait
+              the header is ~30dp wider than the screen at the full logo size, so
+              a fixed width collides; this scales down rather than clipping.
+            -->
             <ImageView
                 android:id="@+id/img_logo"
-                android:layout_width="@dimen/logo_width"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/logo_height"
-                android:src="@drawable/tv_caller_logo"
+                android:adjustViewBounds="true"
+                android:contentDescription="ViKom Logo"
+                android:maxWidth="@dimen/logo_width"
                 android:scaleType="fitStart"
-                android:contentDescription="ViKom Logo" />
+                android:src="@drawable/vk_logo" />
 
             <TextView
                 android:id="@+id/txt_welcome"
@@ -40,8 +50,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/welcome_user"
                 android:textSize="@dimen/header_welcome_text"
-                android:textColor="#1E88E5"
-                android:fontFamily="sans-serif-medium" />
+                android:textColor="@color/vk_primary"
+                android:fontFamily="@font/poppins_medium" />
         </LinearLayout>
 
         
@@ -118,7 +128,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/logout"
                         android:textSize="11sp"
-                        android:textColor="#212121"
+                        android:textColor="@color/vk_text_primary"
                         android:layout_marginStart="4dp" />
                 </LinearLayout>
 
@@ -150,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:text="Settings"
                         android:textSize="11sp"
-                        android:textColor="#212121"
+                        android:textColor="@color/vk_text_primary"
                         android:layout_marginStart="4dp" />
                 </LinearLayout>
 
@@ -182,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:text="Profile"
                         android:textSize="11sp"
-                        android:textColor="#212121"
+                        android:textColor="@color/vk_text_primary"
                         android:layout_marginStart="4dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -223,9 +233,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/clock_time_size"
-                        android:textColor="#212121"
+                        android:textColor="@color/vk_text_primary"
                         android:textStyle="bold"
-                        android:fontFamily="sans-serif-bold"
+                        android:fontFamily="@font/poppins_bold"
                         android:lineSpacingExtra="-2dp"
                         tools:text="14:05" />
 
@@ -234,7 +244,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/clock_date_size"
-                        android:textColor="#424242"
+                        android:textColor="@color/vk_gray_700"
                         tools:text="15 Januar 2026" />
                 </LinearLayout>
             </LinearLayout>

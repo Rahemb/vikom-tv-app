@@ -1,4 +1,12 @@
 <resources>
 
-    <style name="Theme.TV_caller_app" parent="@style/Theme.Leanback" />
+    <!--
+      Poppins is set on the theme so any TextView that doesn't specify a family
+      picks up the brand typeface rather than system sans. Views needing a
+      specific weight still set android:fontFamily explicitly (poppins_medium /
+      poppins_bold), and headings use @font/nunito via the VK.Text.* styles.
+    -->
+    <style name="Theme.TV_caller_app" parent="@style/Theme.Leanback">
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
 </resources>
