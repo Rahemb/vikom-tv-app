@@ -184,4 +184,31 @@
     <string name="appointment_time_format">%1$s — %2$s</string>
     <string name="appointment_ok">OK</string>
 
+    <!-- Appointments tab -->
+    <string name="tab_appointments">Avtaler</string>
+    <string name="appointments_section_upcoming">Kommende avtaler</string>
+    <string name="appointments_section_past">Tidligere avtaler</string>
+    <string name="appointments_loading">Laster avtaler …</string>
+    <string name="appointments_empty">Du har ingen avtaler</string>
+    <string name="appointments_error">Kunne ikke hente avtaler. Sjekk nettverket.</string>
+    <string name="appointments_retry">Prøv igjen</string>
+    <string name="appointments_not_linked">Kontoen din er ikke koblet til journalsystemet. Kontakt personalet.</string>
+    <string name="appointments_session_expired">Økten er utløpt. Logg inn på nytt.</string>
+    <string name="appointments_not_configured">Appen vet ikke hvor systemet er. Kontakt utvikler.</string>
+    <string name="appointment_personnel_format">Med %1$s</string>
+
+    <!-- Patient-facing status labels, not the database values -->
+    <string name="appointment_status_booked">Bekreftet</string>
+    <string name="appointment_status_inprogress">Pågår</string>
+    <string name="appointment_status_completed">Fullført</string>
+    <string name="appointment_status_notcompleted">Ikke utført</string>
+    <string name="appointment_status_cancelled">Avlyst</string>
+
+    <!-- Push notification screen -->
+    <string name="appointment_action_created">Ny avtale</string>
+    <string name="appointment_action_updated">Avtale endret</string>
+    <string name="appointment_action_cancelled">Avtale avlyst</string>
+    <string name="appointment_see_all">Se alle avtaler</string>
+    <string name="appointment_close">Lukk</string>
+
 </resources>

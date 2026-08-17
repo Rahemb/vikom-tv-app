@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.example.tv_caller_app.repository.AppointmentRepository
 import com.example.tv_caller_app.auth.SessionManager
 import com.example.tv_caller_app.auth.SessionRefreshManager
 import com.example.tv_caller_app.calling.repository.PresenceRepository
@@ -121,7 +122,8 @@ class TVCallerApplication : Application(), DefaultLifecycleObserver {
                     webRTCDataSource = WebRTCManager(applicationContext),
                     callNotificationDataSource = CallNotificationManager(applicationContext),
                     signalingService = SignalingManager(sessionManager.getUserId() ?: ""),
-                    fcmDataSource = FCMRepository.getInstance(sessionManager)
+                    fcmDataSource = FCMRepository.getInstance(sessionManager),
+                    appointmentDataSource = AppointmentRepository.getInstance(sessionManager)
                 )
                 Log.d(TAG, "CallViewModel initialized")
 
@@ -131,7 +133,22 @@ class TVCallerApplication : Application(), DefaultLifecycleObserver {
                     pendingFcmCallData = null
                 }
 
-                registerFcmToken()
+                // Isolated: without google-services.json, FirebaseMessaging throws
+                // here. That is an expected local-development state, and letting it
+                // reach the outer catch reported "Failed to initialize
+                // CallViewModel" for a CallViewModel that had in fact just
+                // initialised — and would silently skip anything added below.
+                try {
+                    registerFcmToken()
+                } catch (e: Exception) {
+                    Log.w(
+                        TAG,
+                        "Firebase is not configured, so incoming calls will not wake " +
+                            "the app when it is fully closed. Add app/google-services.json " +
+                            "to enable push notifications.",
+                        e
+                    )
+                }
             }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to initialize CallViewModel", e)

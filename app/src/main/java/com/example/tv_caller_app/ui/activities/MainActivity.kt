@@ -1,6 +1,7 @@
 package com.example.tv_caller_app.ui.activities
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.content.res.Configuration
@@ -17,6 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.tv_caller_app.ui.fragments.AppointmentsFragment
 import com.example.tv_caller_app.R
 import com.example.tv_caller_app.ui.fragments.HamburgerMenuFragment
 import com.example.tv_caller_app.ui.fragments.ProfileFragment
@@ -34,6 +36,20 @@ class MainActivity : FragmentActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
+
+        const val EXTRA_OPEN_TAB = "open_tab"
+        const val TAB_APPOINTMENTS = "appointments"
+
+        /**
+         * Opens MainActivity, optionally landing on a specific tab. Used by
+         * AppointmentActivity's "Se alle avtaler" button.
+         */
+        fun createIntent(context: Context, openTab: String? = null): Intent {
+            return Intent(context, MainActivity::class.java).apply {
+                openTab?.let { putExtra(EXTRA_OPEN_TAB, it) }
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            }
+        }
     }
 
     private lateinit var btnLogout: LinearLayout
@@ -100,10 +116,42 @@ class MainActivity : FragmentActivity() {
 
     private fun loadMainContent(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
+            val fragment = if (intent?.getStringExtra(EXTRA_OPEN_TAB) == TAB_APPOINTMENTS) {
+                AppointmentsFragment()
+            } else {
+                QuickDialFragment()
+            }
+
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main_browse_fragment, QuickDialFragment())
+                .replace(R.id.main_browse_fragment, fragment)
                 .commitNow()
         }
+    }
+
+    /**
+     * createIntent uses CLEAR_TOP | SINGLE_TOP, so when MainActivity is already
+     * running onCreate does not run again and loadMainContent is never reached.
+     * Without this override the "Se alle avtaler" button would appear to do
+     * nothing.
+     */
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+
+        if (intent.getStringExtra(EXTRA_OPEN_TAB) == TAB_APPOINTMENTS) {
+            showAppointmentsTab()
+        }
+    }
+
+    private fun showAppointmentsTab() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_browse_fragment, AppointmentsFragment())
+            .runOnCommit {
+                findViewById<android.widget.FrameLayout>(R.id.main_browse_fragment)?.post {
+                    findViewById<TextView>(R.id.tab_appointments)?.requestFocus()
+                }
+            }
+            .commit()
     }
 
     private fun observeIncomingCalls() {

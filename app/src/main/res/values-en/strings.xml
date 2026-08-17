@@ -146,4 +146,33 @@
     
     <string name="notification_ready_for_calls">Ready for calls</string>
     <string name="notification_incoming_call_from">Incoming call from %s</string>
+
+    <!-- Appointments. The first three were missing here and fell through to Norwegian. -->
+    <string name="appointment_title_default">Appointment</string>
+    <string name="appointment_time_format">%1$s — %2$s</string>
+    <string name="appointment_ok">OK</string>
+
+    <string name="tab_appointments">Appointments</string>
+    <string name="appointments_section_upcoming">Upcoming appointments</string>
+    <string name="appointments_section_past">Past appointments</string>
+    <string name="appointments_loading">Loading appointments …</string>
+    <string name="appointments_empty">You have no appointments</string>
+    <string name="appointments_error">Could not load appointments. Check your network.</string>
+    <string name="appointments_retry">Try again</string>
+    <string name="appointments_not_linked">Your account is not linked to the care record. Please contact staff.</string>
+    <string name="appointments_session_expired">Your session has expired. Please sign in again.</string>
+    <string name="appointments_not_configured">The app does not know where the system is. Contact a developer.</string>
+    <string name="appointment_personnel_format">With %1$s</string>
+
+    <string name="appointment_status_booked">Confirmed</string>
+    <string name="appointment_status_inprogress">In progress</string>
+    <string name="appointment_status_completed">Completed</string>
+    <string name="appointment_status_notcompleted">Not completed</string>
+    <string name="appointment_status_cancelled">Cancelled</string>
+
+    <string name="appointment_action_created">New appointment</string>
+    <string name="appointment_action_updated">Appointment updated</string>
+    <string name="appointment_action_cancelled">Appointment cancelled</string>
+    <string name="appointment_see_all">See all appointments</string>
+    <string name="appointment_close">Close</string>
 </resources>

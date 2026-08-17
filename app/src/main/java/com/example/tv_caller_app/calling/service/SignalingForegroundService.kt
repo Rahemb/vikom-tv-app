@@ -125,6 +125,20 @@ class SignalingForegroundService : Service() {
         // Observe appointment notifications and launch a simple activity when received
         appointmentObserver = Observer { appointment ->
             appointment?.let { appt ->
+                // Never cover an active call with an appointment popup. If a call
+                // is in progress the notification is deliberately left set, so the
+                // callState observer above can deliver it once the call ends.
+                val callState = vm.callState.value
+                val busy = callState != null &&
+                    callState !is CallViewModel.CallState.Idle &&
+                    callState !is CallViewModel.CallState.Ended &&
+                    callState !is CallViewModel.CallState.Failed
+
+                if (busy) {
+                    Log.i(TAG, "Deferring AppointmentActivity - call in progress ($callState)")
+                    return@Observer
+                }
+
                 Log.i(TAG, "Appointment event received in service - launching AppointmentActivity: ${appt.appointmentId}")
                 val intent = AppointmentActivity.createIntent(
                     context = this,
@@ -139,6 +153,10 @@ class SignalingForegroundService : Service() {
                 )
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+
+                // Consume it, or re-registering this observer later replays the
+                // same event and relaunches the screen.
+                vm.clearAppointmentNotification()
             }
         }
 

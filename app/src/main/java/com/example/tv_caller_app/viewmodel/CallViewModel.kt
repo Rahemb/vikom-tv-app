@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tv_caller_app.datasource.AppointmentDataSource
 import com.example.tv_caller_app.auth.SessionManager
 import com.example.tv_caller_app.calling.signaling.SignalingEvent
 import com.example.tv_caller_app.datasource.CallHistoryDataSource
@@ -42,6 +43,7 @@ class CallViewModel(
     private var contactDataSource: ContactDataSource? = null
     private var callHistoryDataSource: CallHistoryDataSource? = null
     private var quickDialDataSource: QuickDialDataSource? = null
+    private var appointmentDataSource: AppointmentDataSource? = null
 
     private val currentUserId = sessionManager.getUserId() ?: ""
     private val currentUserName = "User"
@@ -107,6 +109,18 @@ class CallViewModel(
     private val _appointmentNotification = MutableLiveData<AppointmentNotification?>()
     val appointmentNotification: LiveData<AppointmentNotification?> = _appointmentNotification
 
+    /**
+     * Clears a delivered appointment notification.
+     *
+     * Without this the value stays set forever, and because the foreground service
+     * observes with observeForever, re-registering the observer (on service
+     * restart) immediately re-delivers the last event and relaunches
+     * AppointmentActivity. The service calls this once it has shown the screen.
+     */
+    fun clearAppointmentNotification() {
+        _appointmentNotification.postValue(null)
+    }
+
     
 
     fun initialize(
@@ -117,8 +131,11 @@ class CallViewModel(
         webRTCDataSource: WebRTCDataSource,
         callNotificationDataSource: CallNotificationDataSource,
         signalingService: SignalingService,
-        fcmDataSource: FCMDataSource? = null
+        fcmDataSource: FCMDataSource? = null,
+        appointmentDataSource: AppointmentDataSource? = null
     ) {
+        this.appointmentDataSource = appointmentDataSource
+
         if (currentUserId.isEmpty()) {
             Log.e(TAG, "Cannot initialize CallViewModel - no user ID")
             _errorMessage.value = "User not logged in"
@@ -189,6 +206,11 @@ class CallViewModel(
 
     private fun handleAppointmentEvent(event: SignalingEvent.AppointmentEvent) {
         Log.i(TAG, "Received appointment event: ${event.appointmentId} ${event.action}")
+
+        // The pushed event means the backend's copy has changed, so anything
+        // cached here is stale. The appointments screen refetches on resume, but
+        // dropping the cache keeps the two in step even if that changes.
+        appointmentDataSource?.invalidateCache()
 
         val notification = AppointmentNotification(
             appointmentId = event.appointmentId,

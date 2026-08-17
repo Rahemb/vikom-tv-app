@@ -1,54 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+  Shown when the backend pushes an appointment change. Previously a black screen
+  with hardcoded text sizes, which matched nothing else in the app; now the same
+  wave background and white card as the rest, sized from the dimens tokens.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@android:color/black">
+    android:background="@drawable/login_wave_background">
 
-    <TextView
-        android:id="@+id/txt_appointment_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingBottom="12dp"
-        android:text="Appointment" />
-
-    <TextView
-        android:id="@+id/txt_appointment_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:paddingBottom="8dp"
-        android:text="Date" />
-
-    <TextView
-        android:id="@+id/txt_appointment_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:paddingBottom="8dp"
-        android:text="Time" />
-
-    <TextView
-        android:id="@+id/txt_appointment_personnel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:paddingBottom="24dp"
-        android:text="Personnel" />
-
-    <Button
-        android:id="@+id/btn_appointment_ok"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OK"
-        android:backgroundTint="@color/vk_primary"
-        android:textColor="@android:color/white" />
+        android:layout_gravity="center"
+        android:background="@drawable/dialog_background"
+        android:gravity="center_horizontal"
+        android:minWidth="@dimen/dialog_width"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/dialog_padding_horizontal"
+        android:paddingTop="@dimen/dialog_padding_top"
+        android:paddingBottom="@dimen/dialog_padding_bottom">
 
-</LinearLayout>
+        <!-- What happened: created / updated / cancelled. The old screen extracted
+             this and then never showed it. -->
+        <TextView
+            android:id="@+id/txt_appointment_action"
+            style="@style/VK.Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txt_appointment_status"
+            style="@style/VK.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/status_chip_booked"
+            android:paddingHorizontal="@dimen/padding_standard"
+            android:paddingVertical="8dp"
+            android:textColor="@color/vk_white"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="@dimen/padding_standard"
+            android:background="@color/vk_border" />
+
+        <TextView
+            android:id="@+id/txt_appointment_date"
+            style="@style/VK.Text.Heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txt_appointment_time"
+            style="@style/VK.Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/ic_clock"
+            android:textColor="@color/vk_gray_700" />
+
+        <TextView
+            android:id="@+id/txt_appointment_personnel"
+            style="@style/VK.Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txt_appointment_message"
+            style="@style/VK.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_appointment_see_all"
+                style="@style/VK.Text.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/padding_standard"
+                android:text="@string/appointment_see_all" />
+
+            <TextView
+                android:id="@+id/btn_appointment_close"
+                style="@style/VK.Text.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/padding_standard"
+                android:text="@string/appointment_close" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

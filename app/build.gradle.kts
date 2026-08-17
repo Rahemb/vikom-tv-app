@@ -41,6 +41,15 @@ android {
 
         buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
         buildConfigField("String", "SUPABASE_KEY", "\"$supabaseKey\"")
+
+        // Base URL of the .NET backend, used for appointment data. Per-developer,
+        // so it lives in local.properties alongside the Supabase values — see
+        // local.properties.example. Blank is tolerated: the app still builds and
+        // runs, and the appointments screen reports that it cannot reach the
+        // backend rather than crashing.
+        val backendBaseUrl = localProperties.getProperty("backend.base.url") ?: ""
+
+        buildConfigField("String", "BACKEND_BASE_URL", "\"$backendBaseUrl\"")
     }
 
     buildTypes {

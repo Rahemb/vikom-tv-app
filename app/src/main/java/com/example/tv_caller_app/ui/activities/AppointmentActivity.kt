@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import com.example.tv_caller_app.R
+import com.example.tv_caller_app.settings.SettingsManager
+import com.example.tv_caller_app.ui.util.AppointmentStatusUi
+import java.util.Locale
 
 class AppointmentActivity : FragmentActivity() {
 
@@ -58,10 +61,28 @@ class AppointmentActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyLocale()
         setContentView(R.layout.activity_appointment)
 
         extractIntentData()
         initializeViews()
+    }
+
+    /**
+     * Applies the language chosen in Settings, as the other activities do.
+     *
+     * Without this the screen inherits the device locale, which showed the date as
+     * "Thursday 20. August" next to otherwise Norwegian labels — the date is
+     * formatted with Locale.getDefault(), and only applyLocale() sets that.
+     */
+    private fun applyLocale() {
+        val lang = SettingsManager.getInstance(this).language
+        val locale = Locale.forLanguageTag(lang)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        @Suppress("DEPRECATION")
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     private fun extractIntentData() {
@@ -78,17 +99,43 @@ class AppointmentActivity : FragmentActivity() {
     }
 
     private fun initializeViews() {
+        val txtAction = findViewById<TextView>(R.id.txt_appointment_action)
+        val txtStatus = findViewById<TextView>(R.id.txt_appointment_status)
         val txtMessage = findViewById<TextView>(R.id.txt_appointment_message)
         val txtDate = findViewById<TextView>(R.id.txt_appointment_date)
         val txtTime = findViewById<TextView>(R.id.txt_appointment_time)
         val txtPersonnel = findViewById<TextView>(R.id.txt_appointment_personnel)
-        val btnOk = findViewById<Button>(R.id.btn_appointment_ok)
+        val btnSeeAll = findViewById<TextView>(R.id.btn_appointment_see_all)
+        val btnClose = findViewById<TextView>(R.id.btn_appointment_close)
 
-        txtMessage.text = if (shortMessage.isNotBlank()) shortMessage else getString(R.string.appointment_title_default)
-        txtDate.text = date
+        // Shares its status/date formatting with the appointments list so the two
+        // screens cannot describe the same appointment differently.
+        txtAction.setText(AppointmentStatusUi.actionLabelRes(action))
+        txtStatus.setText(AppointmentStatusUi.labelRes(status))
+        txtStatus.setBackgroundResource(AppointmentStatusUi.chipRes(status))
+
+        txtDate.text = AppointmentStatusUi.formatLongDate(date)
         txtTime.text = getString(R.string.appointment_time_format, startTime, endTime)
-        txtPersonnel.text = personnelName
 
-        btnOk.setOnClickListener { finish() }
+        txtPersonnel.text = if (personnelName.isBlank()) {
+            ""
+        } else {
+            getString(R.string.appointment_personnel_format, personnelName)
+        }
+        txtPersonnel.visibility = if (personnelName.isBlank()) View.GONE else View.VISIBLE
+
+        txtMessage.text = shortMessage
+        txtMessage.visibility = if (shortMessage.isBlank()) View.GONE else View.VISIBLE
+
+        btnSeeAll.setOnClickListener {
+            startActivity(MainActivity.createIntent(this, MainActivity.TAB_APPOINTMENTS))
+            finish()
+        }
+
+        btnClose.setOnClickListener { finish() }
+
+        // Focus the dismissive action, matching the confirm dialog elsewhere, so a
+        // stray D-pad press cannot navigate somewhere unexpected.
+        btnClose.requestFocus()
     }
 }

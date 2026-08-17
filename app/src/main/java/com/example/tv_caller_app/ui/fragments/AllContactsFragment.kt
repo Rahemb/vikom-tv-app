@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tv_caller_app.ui.util.MainTabsHelper
 import com.example.tv_caller_app.R
 import com.example.tv_caller_app.model.Contact
 import com.example.tv_caller_app.model.Profile
@@ -72,23 +73,7 @@ class AllContactsFragment : Fragment() {
     }
 
     private fun setupTabs(view: View) {
-        val tabQuickDial = view.findViewById<TextView>(R.id.tab_quick_dial)
-        val tabContacts = view.findViewById<TextView>(R.id.tab_contacts)
-
-        tabQuickDial.setOnClickListener {
-            val activity = requireActivity()
-            activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_browse_fragment, QuickDialFragment())
-                .runOnCommit {
-                    activity.findViewById<android.widget.FrameLayout>(R.id.main_browse_fragment)?.post {
-                        activity.findViewById<TextView>(R.id.tab_quick_dial)?.requestFocus()
-                    }
-                }
-                .commit()
-        }
-
-        tabContacts.setOnClickListener {
-        }
+        MainTabsHelper.bind(view, MainTabsHelper.Tab.CONTACTS)
     }
 
     private fun setupList() {

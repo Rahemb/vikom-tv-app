@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Section header for the appointments list ("Kommende avtaler" / "Tidligere
+     avtaler"). focusable="false" so the D-pad skips straight between rows. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="false"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="6dp">
+
+    <TextView
+        android:id="@+id/section_title"
+        style="@style/VK.Text.Heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="@dimen/divider_width"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/vk_border" />
+</LinearLayout>

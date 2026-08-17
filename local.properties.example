@@ -10,3 +10,25 @@ sdk.dir=/path/to/your/android/sdk
 # https://supabase.com/dashboard/project/_/settings/api
 supabase.url=https://your-project.supabase.co
 supabase.key=your-anon-key-here
+
+# .NET backend (appointments)
+# The address of the ViKom backend as reachable FROM THE DEVICE. Include the
+# trailing slash. Pick whichever of these suits your setup:
+#
+#  1. USB cable (recommended, and what CI-less local testing should use):
+#         backend.base.url=http://127.0.0.1:5084/
+#     then forward the port down the cable before running the app:
+#         adb reverse tcp:5084 tcp:5084
+#     This works regardless of which Wi-Fi network the device is on and needs no
+#     firewall rule. Re-run the adb command after replugging the device.
+#
+#  2. Android emulator:
+#         backend.base.url=http://10.0.2.2:5084/     (alias for the host machine)
+#
+#  3. Physical device on the SAME Wi-Fi as your machine — use your machine's LAN
+#     IP (find it with `ipconfig`), e.g.
+#         backend.base.url=http://192.168.1.42:5084/
+#     This needs the backend bound to all interfaces and an open firewall port,
+#     and breaks whenever your IP changes:
+#         dotnet run --project backend --launch-profile http-lan
+backend.base.url=http://127.0.0.1:5084/

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The main tab strip, shared by the three top-level fragments via <include>.
+
+  It used to be copy-pasted into fragment_quick_dial.xml and fragment_contacts.xml,
+  which had already drifted apart. MainTabsHelper.bind() owns the active/inactive
+  styling and the fragment-swap wiring, so each fragment needs one line.
+
+  Do not put android:id or lone layout_* attributes on the <include> tag: an id
+  there would override tab_container below, and layout_* attrs are silently
+  dropped unless both width and height are supplied.
+
+  maxLines/ellipsize/autoSize matter in portrait — at 26sp, three tabs plus
+  "Hurtigoppringing" will not fit across an 800dp-wide screen otherwise.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tab_quick_dial"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tab_height"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:autoSizeMaxTextSize="@dimen/tab_text_size"
+        android:autoSizeMinTextSize="16sp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/tab_button_inactive"
+        android:clickable="true"
+        android:defaultFocusHighlightEnabled="false"
+        android:ellipsize="end"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:nextFocusRight="@+id/tab_contacts"
+        android:text="@string/tab_quick_dial"
+        android:textColor="@color/vk_white"
+        android:textSize="@dimen/tab_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tab_contacts"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tab_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:autoSizeMaxTextSize="@dimen/tab_text_size"
+        android:autoSizeMinTextSize="16sp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/tab_button_inactive"
+        android:clickable="true"
+        android:defaultFocusHighlightEnabled="false"
+        android:ellipsize="end"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:nextFocusLeft="@+id/tab_quick_dial"
+        android:nextFocusRight="@+id/tab_appointments"
+        android:text="@string/tab_contacts"
+        android:textColor="@color/vk_white"
+        android:textSize="@dimen/tab_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tab_appointments"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tab_height"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:autoSizeMaxTextSize="@dimen/tab_text_size"
+        android:autoSizeMinTextSize="16sp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/tab_button_inactive"
+        android:clickable="true"
+        android:defaultFocusHighlightEnabled="false"
+        android:ellipsize="end"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:nextFocusLeft="@+id/tab_contacts"
+        android:text="@string/tab_appointments"
+        android:textColor="@color/vk_white"
+        android:textSize="@dimen/tab_text_size"
+        android:textStyle="bold" />
+</LinearLayout>
