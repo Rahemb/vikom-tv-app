@@ -193,6 +193,10 @@ class TVCallerApplication : Application(), DefaultLifecycleObserver {
         ContactRepository.getInstance(sessionManager).invalidateCache()
         CallHistoryRepository.getInstance(sessionManager).invalidateCache()
         QuickDialRepository.getInstance(sessionManager).invalidateCache()
+        // Appointments are clinical data on a device that may be shared, so this
+        // must be cleared too: without it a stale-cache fallback could show the
+        // previous user's appointments to whoever signs in next.
+        AppointmentRepository.getInstance(sessionManager).invalidateCache()
         Log.d(TAG, "All caches invalidated")
     }
 
