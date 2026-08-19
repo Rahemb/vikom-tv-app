@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  The full appointments list, reached from the "Se alle avtaler" button on the
-  Avtaler tab. Keeps the tab strip so the patient can still leave sideways, and
-  adds an explicit back button — the same pattern as the contact detail screen,
-  which cannot rely on a remote's BACK key being found.
+  The patient's care team: who looks after them, and the phone number to reach
+  them on.
+
+  Read-only on purpose. Personnel authenticate against the portal, not Supabase,
+  so they have no profile the tablet could place a call to — showing a number the
+  patient can dial on their own phone is honest; a Ring button that failed would
+  not be.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -12,7 +15,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/padding_large"
     android:paddingTop="4dp"
-    android:paddingBottom="2dp">
+    android:paddingBottom="@dimen/padding_standard">
 
     <include layout="@layout/view_screen_header" />
 
@@ -29,7 +32,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/appointments_list"
+                android:id="@+id/care_team_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
@@ -43,17 +46,6 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/padding_large" />
-
-            <TextView
-                android:id="@+id/btn_retry"
-                style="@style/VK.Text.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="@dimen/padding_large"
-                android:paddingHorizontal="@dimen/padding_large"
-                android:text="@string/appointments_retry"
-                android:visibility="gone" />
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

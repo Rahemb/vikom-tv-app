@@ -10,7 +10,7 @@
     android:paddingBottom="2dp">
 
     
-    <include layout="@layout/view_main_tabs" />
+    <include layout="@layout/view_screen_header" />
 
     
     <LinearLayout

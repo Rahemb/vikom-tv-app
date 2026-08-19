@@ -67,4 +67,44 @@
     <style name="VK.Text.Button.Secondary" parent="VK.Text.Button">
         <item name="android:background">@drawable/button_secondary_background</item>
     </style>
+
+    <!--
+      Home tiles. Equal thirds of the row, tall enough that the icon, the label and
+      the one-line summary all read from across a room, and focusable so the D-pad
+      can reach them.
+    -->
+    <style name="VK.HomeTile" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/padding_standard</item>
+        <item name="android:background">@drawable/appointment_card_background</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:defaultFocusHighlightEnabled">false</item>
+    </style>
+
+    <style name="VK.HomeTile.Icon" parent="">
+        <item name="android:layout_width">@dimen/home_tile_icon</item>
+        <item name="android:layout_height">@dimen/home_tile_icon</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <!-- Tinted here rather than per drawable, so every tile icon is the
+             brand purple no matter what colour its source vector carries. -->
+        <item name="android:tint">@color/vk_primary</item>
+    </style>
+
+    <style name="VK.HomeTile.Label" parent="VK.Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:textSize">@dimen/text_heading</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="VK.HomeTile.Sub" parent="VK.Text.Caption">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

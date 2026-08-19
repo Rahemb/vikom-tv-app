@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Landscape on a large tablet.
+
+  Portrait has ~1280dp of height to spend, landscape only ~800dp, and the home
+  screen has to fit its next-visit card and all three tiles without scrolling —
+  a patient should never have to discover that something is below the fold. So
+  the two biggest elements shrink here, and only here: the hero time and the tile
+  icons. Everything else keeps its sw720dp size.
+-->
+<resources>
+    <dimen name="hero_time_size">64sp</dimen>
+    <dimen name="home_tile_icon">52dp</dimen>
+</resources>

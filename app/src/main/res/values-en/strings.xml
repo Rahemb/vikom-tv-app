@@ -28,9 +28,6 @@
     <string name="back_to_login">Back</string>
 
     
-    <string name="tab_quick_dial">Quick Dial</string>
-    <string name="tab_dial_pad">ID Search</string>
-    <string name="tab_contacts">Contacts</string>
     <string name="welcome_user">Welcome User!</string>
     <string name="greeting_format">Hi, %1$s!</string>
     <string name="search_hint">Search</string>
@@ -158,7 +155,6 @@
     <string name="appointment_time_format">%1$s — %2$s</string>
     <string name="appointment_ok">OK</string>
 
-    <string name="tab_appointments">Appointments</string>
     <string name="appointments_section_upcoming">Upcoming appointments</string>
     <string name="appointments_section_past">Past appointments</string>
     <string name="appointments_loading">Loading appointments …</string>
@@ -170,6 +166,20 @@
     <string name="appointments_not_configured">The app does not know where the system is. Contact a developer.</string>
     <string name="appointment_personnel_format">With %1$s</string>
     <string name="appointments_none_upcoming">You have no upcoming appointments</string>
+
+    <string name="home_all_appointments">All appointments</string>
+    <string name="home_call_someone">Call someone</string>
+    <string name="home_care_team">My care team</string>
+    <string name="home_appointments_count">%1$d upcoming</string>
+    <string name="home_contacts_count">%1$d contacts</string>
+    <string name="home_care_team_empty">None registered</string>
+    <string name="care_team_title">My care team</string>
+    <string name="care_team_role_personnel">Healthcare staff</string>
+    <string name="care_team_role_relative">Next of kin</string>
+    <string name="care_team_empty">No one on your care team is registered yet.</string>
+    <string name="care_team_error">Could not load your care team.</string>
+    <string name="contacts_title">Call someone</string>
+    <string name="section_suggested">Suggested</string>
 
     <string name="appointment_hero_today">TODAY</string>
     <string name="appointment_hero_tomorrow">TOMORROW</string>

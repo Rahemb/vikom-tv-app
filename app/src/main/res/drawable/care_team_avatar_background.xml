@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Initials disc. Personnel have no photo in either system, so initials on the
+     brand colour stand in rather than a generic silhouette. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/vk_primary" />
+</shape>

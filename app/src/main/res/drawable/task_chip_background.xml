@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Task pill on the appointment hero. The light-primary wash keeps the tasks
-  readable as secondary information without competing with the status chip,
-  which is the only saturated element on the card.
+  Task badge on the appointment hero.
+
+  Grey-200 fill with dark text, matching the web portal's neutral .vk-badge — the
+  shared badge grammar, not a TV-only invention. It also has to survive both card
+  states: the light-primary wash used for the pills previously was the same colour
+  the card takes on D-pad focus, so the badges vanished the moment the card was
+  focused, which is exactly when they are being read.
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="@color/vk_primary_surface" />
+    <solid android:color="@color/vk_gray_200" />
     <corners android:radius="@dimen/radius_pill" />
 </shape>

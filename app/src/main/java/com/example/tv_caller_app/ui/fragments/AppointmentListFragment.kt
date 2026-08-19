@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tv_caller_app.R
 import com.example.tv_caller_app.ui.adapters.DayGroupedAppointmentAdapter
-import com.example.tv_caller_app.ui.util.MainTabsHelper
 import com.example.tv_caller_app.viewmodel.AppointmentsUiState
 import com.example.tv_caller_app.viewmodel.AppointmentsViewModel
 import com.example.tv_caller_app.viewmodel.AppointmentsViewModelFactory
@@ -22,7 +21,7 @@ import java.time.LocalDateTime
 /**
  * Every appointment, grouped by day: dates run down the left against a timeline
  * spine with the visits beside them. Sits behind the "Se alle avtaler" button on
- * [AppointmentsFragment], which shows only the next one.
+ * [HomeFragment], which shows only the next one.
  *
  * Shares the activity-scoped [AppointmentsViewModel] with the hero, so returning
  * here costs no extra request beyond the usual resume refresh.
@@ -69,9 +68,10 @@ class AppointmentListFragment : Fragment() {
         appointmentsList = view.findViewById(R.id.appointments_list)
         txtState = view.findViewById(R.id.txt_state)
         btnRetry = view.findViewById(R.id.btn_retry)
-        btnBack = view.findViewById(R.id.btn_back)
+        btnBack = view.findViewById(R.id.btn_screen_back)
 
-        MainTabsHelper.bind(view, MainTabsHelper.Tab.APPOINTMENTS)
+        view.findViewById<TextView>(R.id.txt_screen_title)
+            .setText(R.string.appointments_section_upcoming)
 
         appointmentsList.layoutManager = LinearLayoutManager(requireContext())
         btnRetry.setOnClickListener { viewModel.load() }

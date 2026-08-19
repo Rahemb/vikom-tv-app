@@ -29,10 +29,28 @@ class ContactListAdapter(
         const val VIEW_TYPE_SEARCH_RESULT = 2
         const val VIEW_TYPE_TEXT_HEADER = 3
 
-        fun buildGroupedList(contacts: List<Contact>): List<ContactListItem> {
+        /**
+         * The contact list, optionally led by a short "Foreslått" section.
+         *
+         * [suggested] comes from the quick-dial ranking — online first, then
+         * favourites, then whoever is called most. It used to be its own tab; on a
+         * single contacts screen it earns its keep as the first thing in reach,
+         * saving an elderly patient from scrolling the alphabet to find the two
+         * people they actually ring. Suggested contacts also stay in their
+         * alphabetical group below, so looking under "M" for Marco still works.
+         */
+        fun buildGroupedList(
+            contacts: List<Contact>,
+            suggested: List<Contact> = emptyList()
+        ): List<ContactListItem> {
             val sorted = contacts.sortedBy { it.username.lowercase() }
             val items = mutableListOf<ContactListItem>()
             var lastLetter: Char? = null
+
+            if (suggested.isNotEmpty()) {
+                items.add(ContactListItem.TextHeader(R.string.section_suggested))
+                suggested.forEach { items.add(ContactListItem.ContactEntry(it)) }
+            }
 
             for (contact in sorted) {
                 val firstChar = contact.username.firstOrNull()?.uppercaseChar() ?: '?'

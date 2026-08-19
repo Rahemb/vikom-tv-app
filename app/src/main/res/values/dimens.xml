@@ -108,4 +108,11 @@
     <dimen name="day_anchor_width">108dp</dimen>
     <dimen name="day_anchor_number">26sp</dimen>
     <dimen name="list_time_size">22sp</dimen>
+    <dimen name="home_tile_icon">52dp</dimen>
+    <dimen name="care_team_avatar">56dp</dimen>
+
+    <!-- Task badges. Ratio follows the web portal's .vk-badge padding. -->
+    <dimen name="chip_padding_horizontal">14dp</dimen>
+    <dimen name="chip_padding_vertical">6dp</dimen>
+    <dimen name="chip_gap">10dp</dimen>
 </resources>

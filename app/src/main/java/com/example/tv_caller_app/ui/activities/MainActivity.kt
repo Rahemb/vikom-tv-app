@@ -24,11 +24,10 @@ import com.example.tv_caller_app.auth.SessionManager
 import com.example.tv_caller_app.repository.PatientProfileRepository
 import kotlinx.coroutines.launch
 import com.example.tv_caller_app.ui.fragments.AppointmentListFragment
-import com.example.tv_caller_app.ui.fragments.AppointmentsFragment
+import com.example.tv_caller_app.ui.fragments.HomeFragment
 import com.example.tv_caller_app.R
 import com.example.tv_caller_app.ui.fragments.HamburgerMenuFragment
 import com.example.tv_caller_app.ui.fragments.ProfileFragment
-import com.example.tv_caller_app.ui.fragments.QuickDialFragment
 import com.example.tv_caller_app.ui.fragments.SettingsFragment
 import com.example.tv_caller_app.settings.SettingsManager
 import com.example.tv_caller_app.viewmodel.AuthViewModel
@@ -152,19 +151,13 @@ class MainActivity : FragmentActivity() {
 
     private fun loadMainContent(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            val requestedTab = intent?.getStringExtra(EXTRA_OPEN_TAB)
-            val wantsAppointments =
-                requestedTab == TAB_APPOINTMENTS || requestedTab == TAB_APPOINTMENTS_LIST
-
-            val fragment = if (wantsAppointments) AppointmentsFragment() else QuickDialFragment()
-
+            // Home is always the root, whatever the intent asked for, so Back from
+            // anywhere lands somewhere a patient recognises rather than exiting.
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main_browse_fragment, fragment)
+                .replace(R.id.main_browse_fragment, HomeFragment())
                 .commitNow()
 
-            // Pushed after the tab so BACK from the list lands on the hero
-            // rather than leaving the app.
-            if (requestedTab == TAB_APPOINTMENTS_LIST) {
+            if (intent?.getStringExtra(EXTRA_OPEN_TAB) == TAB_APPOINTMENTS_LIST) {
                 AppointmentListFragment.open(this)
             }
         }
@@ -181,26 +174,21 @@ class MainActivity : FragmentActivity() {
         setIntent(intent)
 
         when (intent.getStringExtra(EXTRA_OPEN_TAB)) {
-            TAB_APPOINTMENTS -> showAppointmentsTab(openFullList = false)
-            TAB_APPOINTMENTS_LIST -> showAppointmentsTab(openFullList = true)
+            TAB_APPOINTMENTS -> showHome(openFullList = false)
+            TAB_APPOINTMENTS_LIST -> showHome(openFullList = true)
         }
     }
 
-    private fun showAppointmentsTab(openFullList: Boolean) {
-        // Any list pushed by an earlier visit is cleared first, so arriving twice
-        // cannot stack two lists on the back stack.
+    private fun showHome(openFullList: Boolean) {
+        // Anything pushed by an earlier visit is cleared first, so arriving twice
+        // cannot stack two copies of a screen on the back stack.
         supportFragmentManager.popBackStackImmediate(
             null,
             androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
         )
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_browse_fragment, AppointmentsFragment())
-            .runOnCommit {
-                findViewById<android.widget.FrameLayout>(R.id.main_browse_fragment)?.post {
-                    findViewById<TextView>(R.id.tab_appointments)?.requestFocus()
-                }
-            }
+            .replace(R.id.main_browse_fragment, HomeFragment())
             .commit()
 
         if (openFullList) {

@@ -34,9 +34,6 @@
     <string name="back_to_login">Tilbake</string>
 
     
-    <string name="tab_quick_dial">Hurtigoppringing</string>
-    <string name="tab_dial_pad">ID-søk</string>
-    <string name="tab_contacts">Kontakter</string>
     <string name="welcome_user">Velkommen Bruker !</string>
     <string name="greeting_format">Hei, %1$s!</string>
     <string name="search_hint">Søk</string>
@@ -190,7 +187,6 @@
     <string name="appointment_ok">OK</string>
 
     <!-- Appointments tab -->
-    <string name="tab_appointments">Avtaler</string>
     <string name="appointments_section_upcoming">Kommende avtaler</string>
     <string name="appointments_section_past">Tidligere avtaler</string>
     <string name="appointments_loading">Laster avtaler …</string>
@@ -202,6 +198,21 @@
     <string name="appointments_not_configured">Appen vet ikke hvor systemet er. Kontakt utvikler.</string>
     <string name="appointment_personnel_format">Med %1$s</string>
     <string name="appointments_none_upcoming">Du har ingen kommende avtaler</string>
+
+    <!-- Home screen -->
+    <string name="home_all_appointments">Alle avtaler</string>
+    <string name="home_call_someone">Ring noen</string>
+    <string name="home_care_team">Mitt pleieteam</string>
+    <string name="home_appointments_count">%1$d framover</string>
+    <string name="home_contacts_count">%1$d kontakter</string>
+    <string name="home_care_team_empty">Ingen registrert</string>
+    <string name="care_team_title">Mitt pleieteam</string>
+    <string name="care_team_role_personnel">Helsepersonell</string>
+    <string name="care_team_role_relative">Pårørende</string>
+    <string name="care_team_empty">Ingen i pleieteamet ditt er registrert ennå.</string>
+    <string name="care_team_error">Kunne ikke hente pleieteamet.</string>
+    <string name="contacts_title">Ring noen</string>
+    <string name="section_suggested">Foreslått</string>
 
     <!-- Next-appointment hero screen -->
     <string name="appointment_hero_today">I DAG</string>

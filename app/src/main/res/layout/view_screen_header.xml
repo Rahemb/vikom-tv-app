@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The header every screen below Home wears: a large back button and the screen's
+  title.
+
+  Replaces the old tab strip. Back is a real 64dp target rather than a reliance on
+  the tablet's system gesture, which elderly users rarely discover, and the title
+  states where you are so nobody has to remember which tab they pressed.
+
+  The including layout sets the title with @id/txt_screen_title.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="12dp">
+
+    <TextView
+        android:id="@+id/btn_screen_back"
+        style="@style/VK.Text.Button.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_back"
+        android:drawablePadding="10dp"
+        android:paddingHorizontal="@dimen/padding_standard"
+        android:text="@string/go_back" />
+
+    <TextView
+        android:id="@+id/txt_screen_title"
+        style="@style/VK.Text.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_standard"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1" />
+</LinearLayout>

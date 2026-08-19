@@ -13,9 +13,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.tv_caller_app.auth.SessionManager
+import com.example.tv_caller_app.repository.QuickDialRepository
+import kotlinx.coroutines.launch
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tv_caller_app.ui.util.MainTabsHelper
 import com.example.tv_caller_app.R
 import com.example.tv_caller_app.model.Contact
 import com.example.tv_caller_app.model.Profile
@@ -40,6 +43,9 @@ class AllContactsFragment : Fragment() {
     private var currentContacts: List<Contact> = emptyList()
     private var currentSearchResults: List<Profile> = emptyList()
 
+    /** Quick-dial ranking, pinned above the alphabet. Empty until it loads. */
+    private var currentSuggested: List<Contact> = emptyList()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,7 +62,11 @@ class AllContactsFragment : Fragment() {
         btnClearSearch = view.findViewById(R.id.btn_clear_search)
         btnSearch = view.findViewById(R.id.btn_search)
 
-        setupTabs(view)
+        view.findViewById<TextView>(R.id.txt_screen_title).setText(R.string.contacts_title)
+        view.findViewById<TextView>(R.id.btn_screen_back).setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
         setupList()
         setupSearch()
         observeViewModel()
@@ -65,16 +75,14 @@ class AllContactsFragment : Fragment() {
             viewModel.loadAllContacts()
         }
 
-        view.findViewById<TextView>(R.id.tab_contacts)?.requestFocus()
+        loadSuggested()
+
+        searchInput.requestFocus()
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.refreshContacts()
-    }
-
-    private fun setupTabs(view: View) {
-        MainTabsHelper.bind(view, MainTabsHelper.Tab.CONTACTS)
     }
 
     private fun setupList() {
@@ -126,13 +134,35 @@ class AllContactsFragment : Fragment() {
         }
     }
 
+    /**
+     * Fills the "Foreslått" section from the quick-dial ranking.
+     *
+     * Best-effort: presence and call history are conveniences, so a failure here
+     * silently leaves the plain alphabetical list rather than blocking it.
+     */
+    private fun loadSuggested() {
+        lifecycleScope.launch {
+            currentSuggested = runCatching {
+                QuickDialRepository
+                    .getInstance(SessionManager.getInstance(requireContext()))
+                    .getQuickDialEntries()
+                    .map { it.contact }
+            }.getOrElse {
+                Log.w(TAG, "Could not load suggested contacts: ${it.message}")
+                emptyList()
+            }
+
+            if (isAdded) updateAdapter()
+        }
+    }
+
     private fun updateAdapter() {
         val hasQuery = searchInput.text.isNotBlank()
 
         val items = if (hasQuery && currentSearchResults.isNotEmpty()) {
             ContactListAdapter.buildCombinedList(currentContacts, currentSearchResults, true)
         } else {
-            ContactListAdapter.buildGroupedList(currentContacts)
+            ContactListAdapter.buildGroupedList(currentContacts, currentSuggested)
         }
 
         val adapter = ContactListAdapter(
