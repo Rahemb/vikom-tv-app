@@ -32,6 +32,11 @@
     <string name="tab_dial_pad">ID Search</string>
     <string name="tab_contacts">Contacts</string>
     <string name="welcome_user">Welcome User!</string>
+    <string name="greeting_format">Hi, %1$s!</string>
+    <string name="search_hint">Search</string>
+    <string name="search_button">Search</string>
+    <string name="search_clear">Clear search</string>
+    <string name="favorite_toggle">Mark as favourite</string>
     <string name="status_logged_in">Logged in</string>
     <string name="section_favorites">Favorites</string>
 
@@ -52,8 +57,9 @@
     <string name="add_to_contacts">Add to contacts</string>
 
     
-    <string name="status_online">● Online</string>
-    <string name="status_offline">○ Offline</string>
+    <string name="profile_icon">Profile picture</string>
+    <string name="status_online">Online</string>
+    <string name="status_offline">Offline</string>
     <string name="status_checking">Checking status…</string>
     <string name="status_in_call">In a call</string>
     <string name="status_busy">Busy</string>
@@ -163,6 +169,15 @@
     <string name="appointments_session_expired">Your session has expired. Please sign in again.</string>
     <string name="appointments_not_configured">The app does not know where the system is. Contact a developer.</string>
     <string name="appointment_personnel_format">With %1$s</string>
+    <string name="appointments_none_upcoming">You have no upcoming appointments</string>
+
+    <string name="appointment_hero_today">TODAY</string>
+    <string name="appointment_hero_tomorrow">TOMORROW</string>
+    <string name="appointment_hero_until">until %1$s</string>
+    <string name="appointment_next_label">Next:</string>
+
+    <string name="day_anchor_today">Today</string>
+    <string name="day_anchor_tomorrow">Tomorrow</string>
 
     <string name="appointment_status_booked">Confirmed</string>
     <string name="appointment_status_inprogress">In progress</string>

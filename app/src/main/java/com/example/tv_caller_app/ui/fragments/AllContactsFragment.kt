@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -33,7 +34,7 @@ class AllContactsFragment : Fragment() {
     }
     private lateinit var contactsList: RecyclerView
     private lateinit var searchInput: EditText
-    private lateinit var btnClearSearch: TextView
+    private lateinit var btnClearSearch: ImageView
     private lateinit var btnSearch: TextView
 
     private var currentContacts: List<Contact> = emptyList()

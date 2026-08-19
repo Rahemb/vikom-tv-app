@@ -10,6 +10,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.ColorRes
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -33,7 +35,7 @@ class ContactDetailFragment : Fragment() {
     private lateinit var btnCall: TextView
     private lateinit var btnRemoveContact: TextView
     private lateinit var btnAddContact: TextView
-    private lateinit var btnFavorite: TextView
+    private lateinit var btnFavorite: ImageView
     private lateinit var contactNickname: TextView
 
     
@@ -186,7 +188,9 @@ class ContactDetailFragment : Fragment() {
         }
 
         viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
-            btnFavorite.text = if (isFavorite) "★" else "☆"
+            btnFavorite.setImageResource(
+                if (isFavorite) R.drawable.ic_star else R.drawable.ic_star_outline
+            )
         }
 
         viewModel.nickname.observe(viewLifecycleOwner) { nickname ->
@@ -294,7 +298,7 @@ class ContactDetailFragment : Fragment() {
         (activity as? MainActivity)?.showConfirmDialog(
             title = getString(R.string.delete_contact_title),
             message = getString(R.string.delete_contact_message, name),
-            icon = "🗑️",
+            icon = R.drawable.ic_delete,
             onConfirm = {
                 Log.d(TAG, "User confirmed deletion")
                 viewModel.deleteContact()
@@ -306,8 +310,8 @@ class ContactDetailFragment : Fragment() {
         val name = viewModel.contactName.value ?: getString(R.string.unknown_contact)
         (activity as? MainActivity)?.showConfirmDialog(
             title = getString(R.string.add_contact_title),
+            icon = R.drawable.ic_add,
             message = getString(R.string.add_contact_message, name),
-            icon = "➕",
             onConfirm = {
                 Log.d(TAG, "User confirmed adding contact")
                 viewModel.addToContacts()
@@ -356,27 +360,37 @@ class ContactDetailFragment : Fragment() {
         }
     }
 
+    /**
+     * Presence is carried by a coloured dot beside the label rather than a bullet
+     * glyph, so it tints with the palette and never depends on the font shipping
+     * that character.
+     */
+    private fun setStatus(@StringRes label: Int, @ColorRes color: Int, online: Boolean) {
+        contactOnlineStatus.setText(label)
+        contactOnlineStatus.setTextColor(ContextCompat.getColor(requireContext(), color))
+        contactOnlineStatus.setCompoundDrawablesRelativeWithIntrinsicBounds(
+            if (online) R.drawable.dot_online else R.drawable.dot_offline, 0, 0, 0
+        )
+        contactOnlineStatus.compoundDrawablePadding =
+            resources.getDimensionPixelSize(R.dimen.padding_standard) / 2
+    }
+
     private fun updateOnlineStatusUI(isOnline: Boolean, webrtcStatus: String) {
         when {
             !isOnline -> {
-                contactOnlineStatus.text = getString(R.string.status_offline)
-                contactOnlineStatus.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.darker_gray))
+                setStatus(R.string.status_offline, android.R.color.darker_gray, false)
             }
             webrtcStatus == "available" -> {
-                contactOnlineStatus.text = getString(R.string.status_online)
-                contactOnlineStatus.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark))
+                setStatus(R.string.status_online, android.R.color.holo_green_dark, true)
             }
             webrtcStatus == "in_call" -> {
-                contactOnlineStatus.text = getString(R.string.status_in_call)
-                contactOnlineStatus.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_orange_dark))
+                setStatus(R.string.status_in_call, android.R.color.holo_orange_dark, true)
             }
             webrtcStatus == "busy" -> {
-                contactOnlineStatus.text = getString(R.string.status_busy)
-                contactOnlineStatus.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
+                setStatus(R.string.status_busy, android.R.color.holo_red_dark, true)
             }
             else -> {
-                contactOnlineStatus.text = getString(R.string.status_offline)
-                contactOnlineStatus.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.darker_gray))
+                setStatus(R.string.status_offline, android.R.color.darker_gray, false)
             }
         }
     }

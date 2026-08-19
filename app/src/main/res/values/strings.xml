@@ -38,6 +38,11 @@
     <string name="tab_dial_pad">ID-søk</string>
     <string name="tab_contacts">Kontakter</string>
     <string name="welcome_user">Velkommen Bruker !</string>
+    <string name="greeting_format">Hei, %1$s!</string>
+    <string name="search_hint">Søk</string>
+    <string name="search_button">Søk</string>
+    <string name="search_clear">Tøm søk</string>
+    <string name="favorite_toggle">Merk som favoritt</string>
     <string name="status_logged_in">Innlogget</string>
     <string name="section_favorites">Favoritter</string>
 
@@ -71,11 +76,11 @@
     <string name="add_to_contacts">Legg til kontakt</string>
     <string name="contact_name_placeholder">Marco</string>
     <string name="user_id_placeholder">123456789</string>
-    <string name="profile_icon">👤</string>
+    <string name="profile_icon">Profilbilde</string>
 
     
-    <string name="status_online">● Pålogget</string>
-    <string name="status_offline">○ Frakoblet</string>
+    <string name="status_online">Pålogget</string>
+    <string name="status_offline">Frakoblet</string>
     <string name="status_checking">Sjekker status…</string>
     <string name="status_in_call">I en samtale</string>
     <string name="status_busy">Opptatt</string>
@@ -196,6 +201,17 @@
     <string name="appointments_session_expired">Økten er utløpt. Logg inn på nytt.</string>
     <string name="appointments_not_configured">Appen vet ikke hvor systemet er. Kontakt utvikler.</string>
     <string name="appointment_personnel_format">Med %1$s</string>
+    <string name="appointments_none_upcoming">Du har ingen kommende avtaler</string>
+
+    <!-- Next-appointment hero screen -->
+    <string name="appointment_hero_today">I DAG</string>
+    <string name="appointment_hero_tomorrow">I MORGEN</string>
+    <string name="appointment_hero_until">til %1$s</string>
+    <string name="appointment_next_label">Neste:</string>
+
+    <!-- Day anchors down the left of the full list -->
+    <string name="day_anchor_today">I dag</string>
+    <string name="day_anchor_tomorrow">I morgen</string>
 
     <!-- Patient-facing status labels, not the database values -->
     <string name="appointment_status_booked">Bekreftet</string>

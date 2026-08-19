@@ -12,11 +12,9 @@ import com.example.tv_caller_app.datasource.AppointmentDataSource
 import com.example.tv_caller_app.datasource.BackendNotConfiguredException
 import com.example.tv_caller_app.datasource.ProfileNotLinkedException
 import com.example.tv_caller_app.datasource.SessionExpiredException
+import com.example.tv_caller_app.model.Appointment
 import com.example.tv_caller_app.repository.AppointmentRepository
-import com.example.tv_caller_app.ui.adapters.AppointmentListItem
-import com.example.tv_caller_app.ui.adapters.AppointmentListAdapter
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 /**
  * State of the appointments screen. Distinct failure states rather than one
@@ -26,7 +24,13 @@ import java.time.LocalDateTime
  */
 sealed class AppointmentsUiState {
     data object Loading : AppointmentsUiState()
-    data class Content(val items: List<AppointmentListItem>) : AppointmentsUiState()
+
+    /**
+     * The raw appointments, not a presentation-ready list: the hero screen needs
+     * the next one and the full list needs them grouped by day, so each screen
+     * derives its own shape from the same state.
+     */
+    data class Content(val appointments: List<Appointment>) : AppointmentsUiState()
     data object Empty : AppointmentsUiState()
     data object NotLinked : AppointmentsUiState()
     data object SessionExpired : AppointmentsUiState()
@@ -55,9 +59,7 @@ class AppointmentsViewModel(
                 _uiState.value = if (appointments.isEmpty()) {
                     AppointmentsUiState.Empty
                 } else {
-                    AppointmentsUiState.Content(
-                        AppointmentListAdapter.buildGroupedList(appointments, LocalDateTime.now())
-                    )
+                    AppointmentsUiState.Content(appointments)
                 }
             } catch (e: ProfileNotLinkedException) {
                 Log.w(TAG, "No patient linked to this Supabase profile")

@@ -41,6 +41,12 @@ data class Appointment(
 private fun Appointment.parseDate(): LocalDate? =
     runCatching { date?.let { LocalDate.parse(it) } }.getOrNull()
 
+/**
+ * The appointment's calendar day, or null if the date is missing or malformed.
+ * Public because the day-grouped list keys its sections on it.
+ */
+fun Appointment.localDate(): LocalDate? = parseDate()
+
 private fun parseTime(value: String?): LocalTime? =
     runCatching { value?.let { LocalTime.parse(it) } }.getOrNull()
 

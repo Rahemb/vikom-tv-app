@@ -82,4 +82,10 @@
 
     
     <dimen name="favorite_star_size">32sp</dimen>
+
+    <!-- Appointments hero + day-grouped list -->
+    <dimen name="hero_time_size">44sp</dimen>
+    <dimen name="day_anchor_width">108dp</dimen>
+    <dimen name="day_anchor_number">26sp</dimen>
+    <dimen name="list_time_size">22sp</dimen>
 </resources>

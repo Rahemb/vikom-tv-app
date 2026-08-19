@@ -65,19 +65,19 @@
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:gravity="center" />
-
-            <TextView
+            <ImageView
                 android:id="@+id/btn_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="☆"
-                android:textSize="@dimen/favorite_star_size"
-                android:textColor="#FFD600"
+                android:layout_width="@dimen/favorite_star_size"
+                android:layout_height="@dimen/favorite_star_size"
+                android:src="@drawable/ic_star_outline"
+                android:tint="@color/vk_warning"
                 android:layout_marginStart="12dp"
+                android:padding="4dp"
                 android:background="@drawable/button_favorite_background"
                 android:focusable="true"
                 android:clickable="true"
-                android:contentDescription="Toggle favorite"
+                android:defaultFocusHighlightEnabled="false"
+                android:contentDescription="@string/favorite_toggle"
                 android:visibility="gone" />
         </LinearLayout>
 

@@ -8,14 +8,7 @@ import com.example.tv_caller_app.datasource.ProfileNotLinkedException
 import com.example.tv_caller_app.datasource.SessionExpiredException
 import com.example.tv_caller_app.model.Appointment
 import com.example.tv_caller_app.network.BackendApiClient
-import com.example.tv_caller_app.network.SupabaseClient
-import io.github.jan.supabase.gotrue.auth
-import io.ktor.client.request.accept
-import io.ktor.client.request.get
-import io.ktor.client.request.header
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
+import com.example.tv_caller_app.network.BackendGet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -75,7 +68,7 @@ class AppointmentRepository private constructor(
         }
 
         return try {
-            val appointments = withContext(Dispatchers.IO) { fetch(allowRetry = true) }
+            val appointments = withContext(Dispatchers.IO) { fetch() }
             cachedAppointments = appointments
             cacheTimestamp = System.currentTimeMillis()
             Log.d(TAG, "Fetched ${appointments.size} appointments")
@@ -98,49 +91,6 @@ class AppointmentRepository private constructor(
         }
     }
 
-    private suspend fun fetch(allowRetry: Boolean): List<Appointment> {
-        if (!BackendApiClient.isConfigured) {
-            throw BackendNotConfiguredException()
-        }
-
-        val token = currentAccessToken() ?: throw SessionExpiredException()
-
-        val response = BackendApiClient.client.get(BackendApiClient.url(PATH)) {
-            header(HttpHeaders.Authorization, "Bearer $token")
-            accept(ContentType.Application.Json)
-        }
-
-        return when (val code = response.status.value) {
-            200 -> BackendApiClient.json.decodeFromString(response.bodyAsText())
-
-            401 -> {
-                if (!allowRetry) throw SessionExpiredException()
-
-                // The access token most likely expired between scheduled refreshes.
-                // Reuse AuthRepository's refresh so there is only one implementation
-                // of that logic, then retry exactly once — allowRetry = false on the
-                // way back in is what prevents unbounded recursion.
-                Log.w(TAG, "401 from backend — refreshing Supabase session and retrying once")
-
-                AuthRepository.getInstance(sessionManager)
-                    .refreshSession()
-                    .getOrElse { throw SessionExpiredException() }
-
-                fetch(allowRetry = false)
-            }
-
-            404 -> throw ProfileNotLinkedException()
-
-            else -> throw Exception("Backend returned HTTP $code")
-        }
-    }
-
-    /**
-     * Prefers the in-memory Supabase session, which is the freshest source after a
-     * refresh, and falls back to encrypted storage on a cold start before any
-     * refresh has run.
-     */
-    private fun currentAccessToken(): String? =
-        SupabaseClient.client.auth.currentSessionOrNull()?.accessToken
-            ?: sessionManager.getAccessToken()
+    private suspend fun fetch(): List<Appointment> =
+        BackendApiClient.json.decodeFromString(BackendGet.text(PATH, sessionManager))
 }

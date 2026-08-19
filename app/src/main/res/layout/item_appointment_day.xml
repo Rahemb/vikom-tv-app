@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  One visit in the day-grouped list.
+
+  Three columns: a date anchor, a timeline spine, and the visit card. The anchor
+  and the spine dot are only filled in on the first visit of each day, so a day
+  with three visits reads as one dated block rather than three repeated dates.
+
+  focusable + clickable sit on the card, not the row, so the D-pad highlight
+  frames the visit rather than the empty anchor column beside it.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- Date anchor: populated on the day's first row only -->
+    <LinearLayout
+        android:layout_width="@dimen/day_anchor_width"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical"
+        android:paddingTop="12dp">
+
+        <TextView
+            android:id="@+id/txt_day_label"
+            style="@style/VK.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.08"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_day_number"
+            style="@style/VK.Text.Heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/day_anchor_number" />
+
+        <TextView
+            android:id="@+id/txt_day_month"
+            style="@style/VK.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- Spine with the day marker -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/padding_standard">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/vk_gray_200" />
+
+        <View
+            android:id="@+id/day_dot"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/day_spine_dot" />
+    </FrameLayout>
+
+    <!-- The visit itself -->
+    <LinearLayout
+        android:id="@+id/visit_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_weight="1"
+        android:background="@drawable/appointment_card_background"
+        android:clickable="true"
+        android:defaultFocusHighlightEnabled="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/list_item_height"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_standard">
+
+        <TextView
+            android:id="@+id/txt_visit_time"
+            style="@style/VK.Text.Heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_standard"
+            android:textSize="@dimen/list_time_size" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_visit_personnel"
+                style="@style/VK.Text.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/txt_visit_tasks"
+                style="@style/VK.Text.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_visit_status"
+            style="@style/VK.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_standard"
+            android:background="@drawable/status_chip_booked"
+            android:paddingHorizontal="@dimen/padding_standard"
+            android:paddingVertical="8dp"
+            android:textColor="@color/vk_white"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

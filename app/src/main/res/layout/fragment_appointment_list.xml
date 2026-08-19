@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The full appointments list, reached from the "Se alle avtaler" button on the
+  Avtaler tab. Keeps the tab strip so the patient can still leave sideways, and
+  adds an explicit back button — the same pattern as the contact detail screen,
+  which cannot rely on a remote's BACK key being found.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/padding_large"
+    android:paddingTop="4dp"
+    android:paddingBottom="2dp">
+
+    <include layout="@layout/view_main_tabs" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/content_area_background"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/appointments_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingHorizontal="4dp" />
+
+            <TextView
+                android:id="@+id/txt_state"
+                style="@style/VK.Text.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/padding_large" />
+
+            <TextView
+                android:id="@+id/btn_retry"
+                style="@style/VK.Text.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="@dimen/padding_large"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:text="@string/appointments_retry"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/btn_back"
+            style="@style/VK.Text.Button.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="8dp"
+            android:paddingHorizontal="@dimen/padding_large"
+            android:text="@string/go_back" />
+    </LinearLayout>
+</LinearLayout>

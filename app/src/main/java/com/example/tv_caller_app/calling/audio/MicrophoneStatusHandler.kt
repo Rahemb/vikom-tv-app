@@ -85,9 +85,9 @@ class MicrophoneStatusHandler(private val activity: Activity) {
     fun handleModeChange(isMicAvailable: Boolean, message: String) {
         Log.i(TAG, "Microphone available: $isMicAvailable - $message")
         if (isMicAvailable) {
-            showToast("✓ Microphone ready - 2-way calling enabled")
+            showToast("Microphone ready - 2-way calling enabled")
         } else {
-            showToast("⚠ No microphone - Receive-only mode")
+            showToast("No microphone - Receive-only mode")
         }
     }
 

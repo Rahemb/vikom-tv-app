@@ -35,54 +35,53 @@
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="#EDEDED">
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:background="@drawable/input_field_background">
 
-                <TextView
+                <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="🔍"
-                    android:textSize="@dimen/tab_text_size"
-                    android:gravity="center"
-                    tools:ignore="HardcodedText" />
+                    android:padding="8dp"
+                    android:src="@drawable/ic_search"
+                    android:contentDescription="@string/search_hint" />
 
                 <EditText
                     android:id="@+id/search_input"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:hint="Søk"
+                    android:hint="@string/search_hint"
                     android:textSize="@dimen/text_body"
-                    android:textColor="#000000"
+                    android:textColor="@color/vk_text_primary"
                     android:textColorHint="@color/vk_gray_500"
                     android:background="@android:color/transparent"
                     android:inputType="text"
                     android:paddingEnd="8dp"
                     android:nextFocusDown="@id/contacts_list"
-                    tools:ignore="VisualLintTextFieldSize,HardcodedText,Autofill" />
+                    tools:ignore="VisualLintTextFieldSize,Autofill" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/btn_clear_search"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:text="✕"
-                    android:textSize="@dimen/tab_text_size"
-                    android:textColor="@color/vk_text_muted"
-                    android:gravity="center"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_close"
+                    android:contentDescription="@string/search_clear"
                     android:background="@android:color/transparent"
                     android:focusable="true"
                     android:clickable="true"
                     android:defaultFocusHighlightEnabled="false"
-                    android:visibility="gone"
-                    tools:ignore="HardcodedText" />
+                    android:visibility="gone" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/btn_search"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="SØK"
+                android:text="@string/search_button"
                 android:textSize="@dimen/search_button_text"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/vk_white"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:paddingHorizontal="20dp"
@@ -90,8 +89,7 @@
                 android:focusable="true"
                 android:clickable="true"
                 android:defaultFocusHighlightEnabled="false"
-                android:layout_marginStart="8dp"
-                tools:ignore="HardcodedText" />
+                android:layout_marginStart="8dp" />
         </LinearLayout>
 
         

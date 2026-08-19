@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Appointments tab. Structure mirrors fragment_contacts.xml (a weighted content
-  area rather than a ScrollView, since a RecyclerView must not be nested in one).
+  Appointments tab — the "next appointment" hero.
 
-  Loading/empty/error share a single centred TextView overlaid on the list — the
-  app has no ProgressBar anywhere, so "Laster avtaler …" is the loading state.
+  The one question this screen answers is "who is coming, and when?", so the
+  start time is the largest thing on it and everything else is subordinate. The
+  full list lives one step away behind "Se alle avtaler".
+
+  Loading/empty/error reuse the same centred TextView + retry pattern as the
+  other tabs; the app has no ProgressBar anywhere, so text is the loading state.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -29,12 +32,147 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/appointments_list"
+            <!-- Hero content; hidden whenever a state message is showing -->
+            <LinearLayout
+                android:id="@+id/hero_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:paddingHorizontal="4dp" />
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!--
+                  The card takes D-pad focus and opens the full list, so a patient
+                  can reach the list without first travelling to the button.
+                -->
+                <LinearLayout
+                    android:id="@+id/hero_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/appointment_card_background"
+                    android:clickable="true"
+                    android:defaultFocusHighlightEnabled="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusDown="@+id/btn_see_all"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_standard">
+
+                    <!-- When / who, side by side -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_hero_eyebrow"
+                                style="@style/VK.Text.Body.Emphasis"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="0.12"
+                                android:textAllCaps="true"
+                                android:textColor="@color/vk_primary" />
+
+                            <TextView
+                                android:id="@+id/txt_hero_time"
+                                style="@style/VK.Text.Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:textSize="@dimen/hero_time_size" />
+
+                            <TextView
+                                android:id="@+id/txt_hero_until"
+                                style="@style/VK.Text.Body"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/vk_gray_700" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_hero_status"
+                                style="@style/VK.Text.Caption"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/status_chip_booked"
+                                android:paddingHorizontal="@dimen/padding_standard"
+                                android:paddingVertical="8dp"
+                                android:textColor="@color/vk_white"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_hero_personnel"
+                                style="@style/VK.Text.Heading"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/padding_standard"
+                                android:gravity="end" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!--
+                      Tasks as pills, added in code. A horizontal LinearLayout
+                      inside a HorizontalScrollView rather than a wrapping flex
+                      row: the project has no flexbox dependency, and a patient
+                      with three or four tasks gets one tidy line either way.
+                    -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_standard"
+                        android:fillViewport="true"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:id="@+id/hero_tasks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" />
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+                <!-- The appointment after this one, plus the way into the list -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txt_hero_next"
+                        style="@style/VK.Text.Body.Muted"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/padding_standard"
+                        android:drawablePadding="12dp"
+                        android:drawableStart="@drawable/ic_clock"
+                        android:maxLines="2"
+                        android:ellipsize="end" />
+
+                    <TextView
+                        android:id="@+id/btn_see_all"
+                        style="@style/VK.Text.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:nextFocusUp="@id/hero_card"
+                        android:paddingHorizontal="@dimen/padding_large"
+                        android:text="@string/appointment_see_all" />
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txt_state"

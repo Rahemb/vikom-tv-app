@@ -6,6 +6,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.tv_caller_app.repository.AppointmentRepository
+import com.example.tv_caller_app.repository.PatientProfileRepository
 import com.example.tv_caller_app.auth.SessionManager
 import com.example.tv_caller_app.auth.SessionRefreshManager
 import com.example.tv_caller_app.calling.repository.PresenceRepository
@@ -197,6 +198,8 @@ class TVCallerApplication : Application(), DefaultLifecycleObserver {
         // must be cleared too: without it a stale-cache fallback could show the
         // previous user's appointments to whoever signs in next.
         AppointmentRepository.getInstance(sessionManager).invalidateCache()
+        // Same reasoning for the patient's name and care team.
+        PatientProfileRepository.getInstance(sessionManager).invalidateCache()
         Log.d(TAG, "All caches invalidated")
     }
 

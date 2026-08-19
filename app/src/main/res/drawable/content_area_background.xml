@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  The main content surface. Matches the web app's card treatment: white fill,
-  a hairline border, and the radius-card corner (20dp).
+  The main content surface. Matches the web app's card treatment: white fill and
+  a hairline border.
+
+  The top corners are square, not radius-card: the tab strip sits flush on top of
+  this surface, so rounding both would leave a visible notch either side of the
+  active tab. Only the bottom corners keep the 20dp radius.
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
@@ -9,5 +13,9 @@
     <stroke
         android:width="1dp"
         android:color="@color/vk_border" />
-    <corners android:radius="@dimen/radius_card" />
+    <corners
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"
+        android:bottomLeftRadius="@dimen/radius_card"
+        android:bottomRightRadius="@dimen/radius_card" />
 </shape>

@@ -128,7 +128,9 @@ class AppointmentActivity : FragmentActivity() {
         txtMessage.visibility = if (shortMessage.isBlank()) View.GONE else View.VISIBLE
 
         btnSeeAll.setOnClickListener {
-            startActivity(MainActivity.createIntent(this, MainActivity.TAB_APPOINTMENTS))
+            // The full list, not just the Avtaler tab's next-appointment hero —
+            // the button promises "alle avtaler".
+            startActivity(MainActivity.createIntent(this, MainActivity.TAB_APPOINTMENTS_LIST))
             finish()
         }
 

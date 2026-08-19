@@ -17,7 +17,13 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.example.tv_caller_app.auth.SessionManager
+import com.example.tv_caller_app.repository.PatientProfileRepository
+import kotlinx.coroutines.launch
+import com.example.tv_caller_app.ui.fragments.AppointmentListFragment
 import com.example.tv_caller_app.ui.fragments.AppointmentsFragment
 import com.example.tv_caller_app.R
 import com.example.tv_caller_app.ui.fragments.HamburgerMenuFragment
@@ -39,6 +45,13 @@ class MainActivity : FragmentActivity() {
 
         const val EXTRA_OPEN_TAB = "open_tab"
         const val TAB_APPOINTMENTS = "appointments"
+
+        /**
+         * Lands on the Avtaler tab and immediately opens the full list on top of
+         * it. Used by the notification popup, whose button says "Se alle avtaler"
+         * — showing only the next appointment there would not honour the label.
+         */
+        const val TAB_APPOINTMENTS_LIST = "appointments_list"
 
         /**
          * Opens MainActivity, optionally landing on a specific tab. Used by
@@ -94,6 +107,29 @@ class MainActivity : FragmentActivity() {
         authViewModel.checkSession()
     }
 
+    /**
+     * Greets the patient by their real name.
+     *
+     * The Supabase profile only carries a handle ("ingrid.berg"), which is no way to
+     * address someone in their own living room, so the backend is asked for the full
+     * name. The handle is shown immediately and replaced when the call returns —
+     * a header that is briefly less personal beats one that is briefly empty, and a
+     * patient with no linked record keeps the handle rather than nothing.
+     */
+    private fun showGreeting(username: String) {
+        txtWelcome.text = getString(R.string.greeting_format, username)
+
+        lifecycleScope.launch {
+            val fullName = PatientProfileRepository
+                .getInstance(SessionManager.getInstance(this@MainActivity))
+                .fullNameOrNull()
+
+            if (!fullName.isNullOrBlank()) {
+                txtWelcome.text = getString(R.string.greeting_format, fullName)
+            }
+        }
+    }
+
     private fun applyLocale() {
         val lang = SettingsManager.getInstance(this).language
         val locale = Locale.forLanguageTag(lang)
@@ -116,15 +152,21 @@ class MainActivity : FragmentActivity() {
 
     private fun loadMainContent(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            val fragment = if (intent?.getStringExtra(EXTRA_OPEN_TAB) == TAB_APPOINTMENTS) {
-                AppointmentsFragment()
-            } else {
-                QuickDialFragment()
-            }
+            val requestedTab = intent?.getStringExtra(EXTRA_OPEN_TAB)
+            val wantsAppointments =
+                requestedTab == TAB_APPOINTMENTS || requestedTab == TAB_APPOINTMENTS_LIST
+
+            val fragment = if (wantsAppointments) AppointmentsFragment() else QuickDialFragment()
 
             supportFragmentManager.beginTransaction()
                 .replace(R.id.main_browse_fragment, fragment)
                 .commitNow()
+
+            // Pushed after the tab so BACK from the list lands on the hero
+            // rather than leaving the app.
+            if (requestedTab == TAB_APPOINTMENTS_LIST) {
+                AppointmentListFragment.open(this)
+            }
         }
     }
 
@@ -138,12 +180,20 @@ class MainActivity : FragmentActivity() {
         super.onNewIntent(intent)
         setIntent(intent)
 
-        if (intent.getStringExtra(EXTRA_OPEN_TAB) == TAB_APPOINTMENTS) {
-            showAppointmentsTab()
+        when (intent.getStringExtra(EXTRA_OPEN_TAB)) {
+            TAB_APPOINTMENTS -> showAppointmentsTab(openFullList = false)
+            TAB_APPOINTMENTS_LIST -> showAppointmentsTab(openFullList = true)
         }
     }
 
-    private fun showAppointmentsTab() {
+    private fun showAppointmentsTab(openFullList: Boolean) {
+        // Any list pushed by an earlier visit is cleared first, so arriving twice
+        // cannot stack two lists on the back stack.
+        supportFragmentManager.popBackStackImmediate(
+            null,
+            androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_browse_fragment, AppointmentsFragment())
             .runOnCommit {
@@ -152,6 +202,10 @@ class MainActivity : FragmentActivity() {
                 }
             }
             .commit()
+
+        if (openFullList) {
+            AppointmentListFragment.open(this)
+        }
     }
 
     private fun observeIncomingCalls() {
@@ -260,7 +314,7 @@ class MainActivity : FragmentActivity() {
                     Log.d(TAG, "Valid session - loading main content")
                     authViewModel.cachedUsername.observe(this) { username ->
                         if (!username.isNullOrBlank()) {
-                            txtWelcome.text = "Hei, $username!"
+                            showGreeting(username)
                         }
                     }
                     val app = application as com.example.tv_caller_app.TVCallerApplication
@@ -301,15 +355,18 @@ class MainActivity : FragmentActivity() {
         showConfirmDialog(
             title = "Utloggingsbekreftelse",
             message = "Er du sikker på at du vil logge ut ?",
-            icon = "⚠️",
             onConfirm = { performLogout() }
         )
     }
 
+    /**
+     * @param icon a drawable, not a glyph: emoji render differently on every
+     *   launcher skin and cannot be tinted to the brand palette.
+     */
     fun showConfirmDialog(
         title: String,
         message: String,
-        icon: String = "⚠️",
+        @DrawableRes icon: Int = R.drawable.ic_warning,
         onConfirm: () -> Unit
     ) {
         val dialog = Dialog(this)
@@ -318,7 +375,7 @@ class MainActivity : FragmentActivity() {
         dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         dialog.setCancelable(true)
 
-        dialog.findViewById<TextView>(R.id.dialog_icon).text = icon
+        dialog.findViewById<ImageView>(R.id.dialog_icon).setImageResource(icon)
         dialog.findViewById<TextView>(R.id.dialog_title).text = title
         dialog.findViewById<TextView>(R.id.dialog_message).text = message
 
