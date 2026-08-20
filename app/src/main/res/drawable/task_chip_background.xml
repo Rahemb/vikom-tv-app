@@ -7,9 +7,16 @@
   states: the light-primary wash used for the pills previously was the same colour
   the card takes on D-pad focus, so the badges vanished the moment the card was
   focused, which is exactly when they are being read.
+
+  The 1dp outline is the app's hairline weight, as used on the cards themselves.
+  It matters most on the focused card, where the grey fill and the light-primary
+  wash are close enough in lightness that the pill edge would otherwise be soft.
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <solid android:color="@color/vk_gray_200" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/vk_gray_400" />
     <corners android:radius="@dimen/radius_pill" />
 </shape>

@@ -98,6 +98,106 @@ must be served over HTTPS.
 
 ---
 
+## Everyday Commands
+
+Android Studio is convenient but not required. Everything below works from a
+plain terminal, and is quicker once the app is installed.
+
+### Put `adb` on your PATH first
+
+Every command here starts with `adb`, which lives inside the Android SDK and is
+not on the PATH by default. Add it once (Windows PowerShell):
+
+```powershell
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Android\Sdk\platform-tools", "User")
+```
+
+On macOS or Linux add `~/Library/Android/sdk/platform-tools` or
+`~/Android/Sdk/platform-tools` to your shell profile instead. Reopen the terminal
+afterwards, then check it worked:
+
+```bash
+adb devices
+```
+
+Your device should be listed as `device`. `unauthorized` means you have not yet
+accepted the USB-debugging prompt on the tablet; an empty list means USB
+debugging is off, or the cable is charge-only.
+
+### Build, install, launch
+
+```bash
+./gradlew installDebug                                                    # compile + install
+adb shell am start -n com.example.tv_caller_app/.ui.activities.MainActivity   # launch it
+```
+
+On Windows use `.\gradlew.bat installDebug`. Note that `installDebug` installs but
+does not start the app, so the two commands together are the edit-run loop.
+
+### Stop, restart, reset
+
+```bash
+adb shell pidof com.example.tv_caller_app        # running? prints a PID, or nothing
+adb shell am force-stop com.example.tv_caller_app   # kill it
+adb shell pm clear com.example.tv_caller_app     # wipe all app data
+```
+
+`force-stop` kills the process but keeps the stored session, so the app comes
+back signed in as the same patient. `pm clear` is the destructive one: it also
+erases the saved Supabase login, which is what you want when you need to sign in
+as a different test patient, and what you do **not** want otherwise.
+
+### Watching the logs
+
+```bash
+adb logcat -c                                                # clear the backlog
+adb logcat *:E                                               # errors only, live
+adb logcat --pid=$(adb shell pidof com.example.tv_caller_app)   # only this app
+```
+
+Clearing the backlog before reproducing a problem is worth the habit — otherwise
+you are scrolling through hours of unrelated system messages to find your own.
+
+The `$(...)` in the last command is shell substitution; in Windows PowerShell
+write it as `adb logcat --pid=(adb shell pidof com.example.tv_caller_app)`.
+
+### Checking the app can reach the backend
+
+Three separate things have to be true, and the app looks identical when any one
+of them is false: an empty appointments tab and no calls arriving. Check them in
+this order.
+
+**1. Is the backend running at all?** From the ViKom repo, `dotnet run --project
+backend`. To check from outside, `curl http://localhost:5084/swagger/index.html`
+should answer `200`. On Windows PowerShell, `netstat -ano | findstr :5084` listing
+nothing at all means it is not running.
+
+**2. Is the USB tunnel up?** If `backend.base.url` is `127.0.0.1:5084`, the app
+depends entirely on the port forward:
+
+```bash
+adb reverse --list                # expect: tcp:5084 tcp:5084
+adb reverse tcp:5084 tcp:5084     # re-create it; harmless to run twice
+```
+
+The tunnel is dropped whenever the cable is unplugged or the adb server restarts,
+and it does not come back on its own. This is the most common cause of "the
+backend is broken" when the backend is in fact perfectly healthy.
+
+**3. Is the app itself failing?** Now read `adb logcat`, filtered to the app as
+shown above.
+
+### When adb itself misbehaves
+
+```bash
+adb kill-server && adb start-server
+```
+
+Use this when the device shows as `offline` or stops responding. It drops every
+port forward, so re-run `adb reverse tcp:5084 tcp:5084` afterwards.
+
+---
+
 ## Project Structure
 
 ```
